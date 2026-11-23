@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIC — Bodhi International Center | Global Temple Construction Fund</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display, Plus Jakarta Sans & Noto Sans Tamil -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans Tamil"', '"Inter"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Noto Sans Tamil"', 'Georgia', 'serif'],
+                    },
+                    colors: {
+                        saffron: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        maroon: {
+                            800: '#5c1916',
+                            900: '#3b0d0b',
+                            950: '#240706',
+                        },
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            600: '#57534e',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 30px -10px rgba(59, 13, 11, 0.08)',
+                        'elevated': '0 20px 45px -12px rgba(28, 25, 23, 0.14)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        .subtle-pattern {
+            background-image: radial-gradient(rgba(251, 191, 36, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Smooth Infinite Vertical Ledger Scroll */
+        @keyframes ledgerVerticalScroll {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+        .ledger-ticker-track {
+            animation: ledgerVerticalScroll 36s linear infinite;
+        }
+        .ledger-ticker-viewport:hover .ledger-ticker-track {
+            animation-play-state: paused;
+        }
+        .ledger-mask {
+            mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 93%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 7%, black 93%, transparent 100%);
+        }
+
+        @media print {
+            body > :not(#receiptModal) {
+                display: none !important;
+            }
+            #receiptModal {
+                position: static !important;
+                background: #fff !important;
+                backdrop-filter: none !important;
+                padding: 0 !important;
+            }
+            #receiptModal .no-print {
+                display: none !important;
+            }
+            #receiptModal > div {
+                box-shadow: none !important;
+                border: 1px solid #d6d3d1 !important;
+                max-width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-saffron-200 selection:text-maroon-950">
+
+    <!-- Top Official Trust Bar -->
+    <div class="bg-maroon-950 text-stone-300 text-xs py-2.5 px-4 border-b border-saffron-500/20">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex flex-wrap justify-center sm:justify-start items-center gap-x-4 gap-y-1">
+                <span class="inline-flex items-center">
+                    <i class="fas fa-certificate text-saffron-400 mr-1.5"></i>
+                    <span data-i18n="regLabel">Reg No:</span> <strong class="text-stone-100 font-semibold ml-1 tracking-wide">BIC/2026/GLOBAL-089</strong>
+                </span>
+                <span class="hidden md:inline text-stone-600">•</span>
+                <span class="hidden md:inline-flex items-center" data-i18n="taxBadge">
+                    <i class="fas fa-shield-alt text-saffron-400 mr-1.5"></i>
+                    501(c)(3) Equivalent, 80G &amp; FCRA Certified
+                </span>
+            </div>
+            <div class="flex items-center space-x-4 text-[11px] sm:text-xs">
+                <button type="button" onclick="openFullLedgerModal()" class="text-emerald-300 hover:text-emerald-200 font-medium inline-flex items-center transition">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                    <span data-i18n="topOpenLedger">Live Open Ledger</span>
+                </button>
+                <span class="text-stone-600">•</span>
+                <a href="#transparency" class="hover:text-saffron-300 transition" data-i18n="topTransparency">Financial Transparency</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 gap-3">
+                <!-- BIC Logo (Updated with Provided Image) -->
+                <a href="#" class="flex items-center space-x-3 group shrink-0">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-maroon-950 flex items-center justify-center shadow-md ring-2 ring-saffron-400/50 group-hover:scale-105 transition-transform duration-300">
+                        <img src="1795268905802.jpg"
+                             onerror="this.src='https://placehold.co/96x96/3b0d0b/fbbf24?text=BIC'"
+                             alt="BIC — Bodhi International Center Logo"
+                             class="w-full h-full object-cover object-top">
+                    </div>
+                    <div>
+                        <h1 class="text-base sm:text-xl font-serif font-bold text-maroon-900 leading-tight tracking-tight" data-i18n="siteName">
+                            BIC — Bodhi International Center
+                        </h1>
+                        <p class="text-[10px] sm:text-xs text-stone-500 font-medium tracking-wider uppercase" data-i18n="siteTagline">
+                            Bodhi International Center • Peace &amp; Dharma Sanctuary
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-stone-600">
+                    <a href="#about" class="hover:text-maroon-900 transition py-1 border-b-2 border-transparent hover:border-saffron-500" data-i18n="navAbout">About Us</a>
+                    <a href="#donate-section" class="hover:text-maroon-900 transition py-1 border-b-2 border-transparent hover:border-saffron-500" data-i18n="navContribute">Contribute</a>
+                    <a href="#phases" class="hover:text-maroon-900 transition py-1 border-b-2 border-transparent hover:border-saffron-500" data-i18n="navPhases">Construction Phases</a>
+                    <a href="#transparency" class="hover:text-maroon-900 transition py-1 border-b-2 border-transparent hover:border-saffron-500" data-i18n="navAudit">Audit &amp; Reports</a>
+                    <a href="#contact" class="hover:text-maroon-900 transition py-1 border-b-2 border-transparent hover:border-saffron-500" data-i18n="navContact">Contact</a>
+                </nav>
+
+                <!-- Language Switcher + CTA -->
+                <div class="flex items-center space-x-2.5 sm:space-x-3">
+                    <div class="relative flex items-center">
+                        <i class="fas fa-language text-saffron-600 text-sm pointer-events-none mr-1.5 hidden sm:inline"></i>
+                        <select id="languageSelect" onchange="changeLanguage(this.value)" aria-label="Select Language" class="bg-stone-100 hover:bg-stone-200/70 border border-stone-300 text-stone-800 text-xs font-semibold rounded-xl px-2.5 py-2 focus:outline-none focus:ring-2 focus:ring-saffron-500 cursor-pointer transition">
+                            <option value="en" selected>English</option>
+                            <option value="ta">தமிழ்</option>
+                            <option value="ja">日本語</option>
+                            <option value="th">ไทย</option>
+                        </select>
+                    </div>
+
+                    <a href="#donate-section" class="inline-flex items-center px-4 sm:px-5 py-2.5 rounded-full bg-gradient-to-r from-saffron-600 to-maroon-800 hover:from-saffron-500 hover:to-maroon-900 text-white font-semibold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 whitespace-nowrap">
+                        <i class="fas fa-hands-praying mr-1.5 sm:mr-2 text-saffron-200"></i>
+                        <span data-i18n="ctaDonate">Donate Now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-maroon-950 text-white overflow-hidden subtle-pattern">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1920&q=80" 
+                 onerror="this.src='https://placehold.co/1920x1080/240706/f59e0b?text=BIC+Bodhi+International+Center'"
+                 alt="BIC Temple Architecture" 
+                 class="w-full h-full object-cover opacity-25 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-br from-maroon-950/95 via-maroon-900/85 to-stone-950/90"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-saffron-500/15 border border-saffron-400/30 text-saffron-300 text-xs font-semibold tracking-wider uppercase">
+                        <span class="w-2 h-2 rounded-full bg-saffron-400 mr-2 animate-pulse"></span>
+                        <span data-i18n="heroBadge">Official Global Fundraising Campaign • 2026</span>
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-serif font-bold leading-[1.18] text-white tracking-tight" data-i18n="heroTitle">
+                        Building a Sacred Sanctuary for World Peace &amp; Mindfulness
+                    </h2>
+                    
+                    <p class="text-base sm:text-lg text-stone-300/95 leading-relaxed max-w-2xl font-normal" data-i18n="heroDesc">
+                        At Bodhi International Center (BIC), we are constructing a global Buddhist Vihara and Meditation Hall to preserve timeless teachings of compassion, wisdom, and inner stillness for generations to come.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#donate-section" class="px-7 py-3.5 rounded-xl bg-saffron-500 hover:bg-saffron-400 text-maroon-950 font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all" data-i18n="heroPrimaryBtn">
+                            Make a Sacred Offering
+                        </a>
+                        <a href="#about" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-sm sm:text-base backdrop-blur-sm transition-all">
+                            <i class="fas fa-users mr-2 text-saffron-300"></i>
+                            <span data-i18n="heroSecondaryBtn">About &amp; Founders</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap items-center gap-6 text-xs text-stone-400 border-t border-white/10">
+                        <span class="inline-flex items-center"><i class="fas fa-check-circle text-saffron-400 mr-2"></i> <span data-i18n="heroFeat1">Instant Tax-Deductible Receipt</span></span>
+                        <span class="inline-flex items-center"><i class="fas fa-check-circle text-saffron-400 mr-2"></i> <span data-i18n="heroFeat2">Card, Apple Pay &amp; Crypto Ready</span></span>
+                        <span class="inline-flex items-center"><i class="fas fa-check-circle text-saffron-400 mr-2"></i> <span data-i18n="heroFeat3">100% Public Open Ledger</span></span>
+                    </div>
+                </div>
+
+                <!-- Right Live Fundraising Progress Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white text-stone-800 rounded-3xl p-6 sm:p-8 shadow-elevated border border-saffron-200/80">
+                        <div class="flex justify-between items-center mb-5">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-maroon-900 bg-saffron-100 border border-saffron-200 px-3 py-1 rounded-full" data-i18n="liveStatus">
+                                Live Campaign Status
+                            </span>
+                            <span class="text-xs text-stone-500 font-medium inline-flex items-center" data-i18n="countriesCount">
+                                <i class="fas fa-globe mr-1.5 text-saffron-600"></i> 54 Countries
+                            </span>
+                        </div>
+
+                        <div class="mb-2 flex items-end justify-between gap-2">
+                            <div>
+                                <span class="text-3xl sm:text-4xl font-bold text-maroon-900 tabular-nums tracking-tight" id="raisedDisplay">$412,500</span>
+                                <span class="text-xs text-stone-500 block mt-1" data-i18n="goalLabel">Raised toward $600,000 USD Goal</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xl font-bold text-saffron-600 tabular-nums" id="percentDisplay">68.8%</span>
+                                <span class="text-xs text-stone-400 block" data-i18n="fundedLabel">Funded</span>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-stone-100 rounded-full h-3.5 mb-6 overflow-hidden p-0.5 border border-stone-200/80">
+                            <div id="progressBar" class="bg-gradient-to-r from-saffron-500 via-saffron-600 to-maroon-800 h-2.5 rounded-full transition-all duration-1000" style="width: 68.8%"></div>
+                        </div>
+
+                        <!-- Key Stats Grid -->
+                        <div class="grid grid-cols-3 gap-2 text-center border-y border-stone-100 py-4 mb-5">
+                            <div>
+                                <p class="text-lg sm:text-xl font-bold text-stone-900 tabular-nums" id="donorCount">4,812</p>
+                                <p class="text-[11px] text-stone-500 font-medium" data-i18n="statPatrons">Global Patrons</p>
+                            </div>
+                            <div class="border-x border-stone-100">
+                                <p class="text-lg sm:text-xl font-bold text-maroon-900">88%</p>
+                                <p class="text-[11px] text-stone-500 font-medium" data-i18n="statBuild">Direct Build</p>
+                            </div>
+                            <div>
+                                <p class="text-lg sm:text-xl font-bold text-stone-900">80G / 501c3</p>
+                                <p class="text-[11px] text-stone-500 font-medium" data-i18n="statTax">Tax Certified</p>
+                            </div>
+                        </div>
+
+                        <!-- Recent Donor Ticker -->
+                        <div class="bg-stone-50 border border-stone-200/70 rounded-2xl p-3.5 flex items-center space-x-3 text-xs">
+                            <div class="w-9 h-9 rounded-full bg-saffron-100 border border-saffron-200 text-maroon-900 flex items-center justify-center shrink-0">
+                                <i class="fas fa-heart text-saffron-600"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="font-semibold text-stone-800 truncate tabular-nums" id="recentDonorText">Kenji Takahashi (Japan) donated ¥50,000 via Apple Pay</p>
+                                <p class="text-stone-400 text-[11px] mt-0.5" data-i18n="recentVerified">2 mins ago • Recorded on BIC Open Ledger</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US & FOUNDERS SECTION -->
+    <section id="about" class="py-16 sm:py-24 bg-white border-b border-stone-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- About Us Header & Mission -->
+            <div class="max-w-3xl mx-auto text-center mb-14">
+                <span class="text-saffron-600 font-bold text-xs tracking-widest uppercase" data-i18n="aboutEyebrow">About Us</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-maroon-900 mt-2 tracking-tight" data-i18n="aboutTitle">
+                    Rooted in Compassion, Built for Timeless Peace
+                </h2>
+                <p class="text-stone-600 mt-4 text-sm sm:text-base leading-relaxed" data-i18n="aboutDesc">
+                    Bodhi International Center (BIC) is a non-profit spiritual, educational, and humanitarian sanctuary dedicated to mindfulness meditation, classical Buddhist scholarship, and transparent global philanthropy. Our mission is to create an open refuge where seekers from every nation can practice stillness and service together.
+                </p>
+            </div>
+
+            <!-- Founders Heading -->
+            <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-8">
+                <div>
+                    <span class="text-[11px] font-bold uppercase tracking-widest text-saffron-700" data-i18n="foundersTag">Visionary Leadership</span>
+                    <h3 class="text-2xl sm:text-3xl font-serif font-bold text-maroon-900" data-i18n="foundersHeading">Founders</h3>
+                </div>
+                <span class="hidden sm:inline-flex items-center text-xs font-semibold text-stone-500 bg-stone-100 px-3.5 py-1.5 rounded-full border border-stone-200">
+                    <i class="fas fa-award text-saffron-600 mr-2"></i> <span data-i18n="coFoundersBadge">Co-Founders • BIC Sanctuary</span>
+                </span>
+            </div>
+
+            <!-- Two Founders Cards: HariKrishnan & Sivaraj -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Founder 1: HariKrishnan -->
+                <div class="bg-stone-50/90 rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-soft hover:border-saffron-400 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-saffron-500 to-maroon-800 text-white flex items-center justify-center font-serif font-bold text-xl shadow-md shrink-0">
+                                HK
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-saffron-700 bg-saffron-100 px-2.5 py-0.5 rounded-full" data-i18n="f1RoleBadge">
+                                    Founder • Sanctuary &amp; Dharma Vision
+                                </span>
+                                <h4 class="text-xl sm:text-2xl font-serif font-bold text-maroon-900 mt-1">HariKrishnan</h4>
+                            </div>
+                        </div>
+
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed" data-i18n="f1Bio">
+                            HariKrishnan co-founded Bodhi International Center with a lifelong devotion to contemplative peace, classical heritage preservation, and sacred architectural harmony. He leads the sanctuary’s spiritual vision, meditation retreats, and cultural dialogue across international Buddhist and peace communities.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-stone-200/80 flex flex-wrap gap-2 text-[11px] font-semibold text-stone-700">
+                        <span class="px-3 py-1 rounded-full bg-white border border-stone-200"><i class="fas fa-spa text-saffron-600 mr-1.5"></i> <span data-i18n="f1Tag1">Meditation &amp; Dharma</span></span>
+                        <span class="px-3 py-1 rounded-full bg-white border border-stone-200"><i class="fas fa-monument text-maroon-800 mr-1.5"></i> <span data-i18n="f1Tag2">Sacred Architecture</span></span>
+                    </div>
+                </div>
+
+                <!-- Founder 2: Sivaraj -->
+                <div class="bg-stone-50/90 rounded-3xl p-6 sm:p-8 border border-stone-200/90 shadow-soft hover:border-saffron-400 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-maroon-800 to-stone-900 text-saffron-300 flex items-center justify-center font-serif font-bold text-xl shadow-md shrink-0">
+                                SR
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-maroon-900 bg-stone-200/80 px-2.5 py-0.5 rounded-full" data-i18n="f2RoleBadge">
+                                    Founder • Governance &amp; Open Ledger
+                                </span>
+                                <h4 class="text-xl sm:text-2xl font-serif font-bold text-maroon-900 mt-1">Sivaraj</h4>
+                            </div>
+                        </div>
+
+                        <p class="text-stone-600 text-xs sm:text-sm leading-relaxed" data-i18n="f2Bio">
+                            Sivaraj co-founded Bodhi International Center to unite charitable stewardship with modern financial transparency. He oversees global operations, multi-currency endowment systems, construction milestones, and real-time Open Ledger accountability so every patron can verify how offerings serve world peace.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-stone-200/80 flex flex-wrap gap-2 text-[11px] font-semibold text-stone-700">
+                        <span class="px-3 py-1 rounded-full bg-white border border-stone-200"><i class="fas fa-book-open text-emerald-600 mr-1.5"></i> <span data-i18n="f2Tag1">Open Ledger &amp; Audit</span></span>
+                        <span class="px-3 py-1 rounded-full bg-white border border-stone-200"><i class="fas fa-globe text-saffron-600 mr-1.5"></i> <span data-i18n="f2Tag2">Global Operations</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Donation + Side Open Ledger Section -->
+    <section id="donate-section" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <span class="text-saffron-600 font-bold text-xs tracking-widest uppercase" data-i18n="donateEyebrow">Sacred Contribution</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-maroon-900 mt-2 tracking-tight" data-i18n="donateTitle">Choose Your Offering</h2>
+            <p class="text-stone-600 mt-3 text-sm sm:text-base leading-relaxed" data-i18n="donateSubtitle">
+                Select your currency, preset tier, or payment method below. Every confirmed contribution is published transparently on the BIC Live Open Ledger.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left: Donation Form Card -->
+            <div class="lg:col-span-7 bg-white rounded-3xl shadow-soft border border-stone-200/90 p-6 sm:p-10">
+                <!-- Currency & Frequency Toggle -->
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pb-6 border-b border-stone-100">
+                    <div class="inline-flex rounded-xl bg-stone-100 p-1 w-full sm:w-auto border border-stone-200/60">
+                        <button type="button" onclick="setFrequency('once')" id="freq-once" class="flex-1 sm:flex-none px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-maroon-900 shadow-sm transition-all" data-i18n="freqOnce">
+                            One-Time Gift
+                        </button>
+                        <button type="button" onclick="setFrequency('monthly')" id="freq-monthly" class="flex-1 sm:flex-none px-5 py-2 rounded-lg text-xs sm:text-sm font-medium text-stone-600 hover:text-stone-900 transition-all" data-i18n="freqMonthly">
+                            Monthly Sustainer
+                        </button>
+                    </div>
+
+                    <div class="flex items-center space-x-2.5 w-full sm:w-auto justify-between sm:justify-end">
+                        <label for="currencySelect" class="text-xs font-semibold text-stone-500 uppercase tracking-wider" data-i18n="currencyLabel">Currency:</label>
+                        <select id="currencySelect" onchange="updateCurrency()" class="bg-stone-50 border border-stone-300 text-stone-900 text-xs sm:text-sm rounded-xl px-3.5 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 cursor-pointer">
+                            <option value="USD" data-symbol="$" data-rate="1" selected>USD ($) — US Dollar</option>
+                            <option value="EUR" data-symbol="€" data-rate="0.92">EUR (€) — Eurozone</option>
+                            <option value="GBP" data-symbol="£" data-rate="0.79">GBP (£) — British Pound</option>
+                            <option value="JPY" data-symbol="¥" data-rate="152">JPY (¥) — Japanese Yen</option>
+                            <option value="SGD" data-symbol="S$" data-rate="1.34">SGD (S$) — Singapore Dollar</option>
+                            <option value="AUD" data-symbol="A$" data-rate="1.52">AUD (A$) — Australian Dollar</option>
+                            <option value="CAD" data-symbol="C$" data-rate="1.38">CAD (C$) — Canadian Dollar</option>
+                            <option value="AED" data-symbol="AED " data-rate="3.67">AED — UAE Dirham</option>
+                            <option value="INR" data-symbol="₹" data-rate="84">INR (₹) — Indian Rupee</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Preset Tiers (Base values in USD) -->
+                <div class="mt-6">
+                    <label class="block text-xs sm:text-sm font-semibold text-stone-700 mb-3" data-i18n="tierHeading">Select Sacred Sponsorship Tier:</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="tierButtons">
+                        <button type="button" onclick="selectAmount(25, this)" class="tier-btn border-2 border-stone-200 hover:border-saffron-500 rounded-2xl p-3.5 sm:p-4 text-center transition-all group">
+                            <span class="block text-base sm:text-lg font-bold text-stone-900 group-hover:text-saffron-700 amount-label tabular-nums" data-usd="25">$25</span>
+                            <span class="block text-[11px] text-stone-500 mt-1" data-i18n="tier1">1 Sacred Brick</span>
+                        </button>
+                        <button type="button" onclick="selectAmount(100, this)" class="tier-btn border-2 border-saffron-500 bg-saffron-50/80 rounded-2xl p-3.5 sm:p-4 text-center transition-all group">
+                            <span class="block text-base sm:text-lg font-bold text-maroon-900 amount-label tabular-nums" data-usd="100">$100</span>
+                            <span class="block text-[11px] text-saffron-800 font-semibold mt-1" data-i18n="tier2">Meditation Pillar</span>
+                        </button>
+                        <button type="button" onclick="selectAmount(250, this)" class="tier-btn border-2 border-stone-200 hover:border-saffron-500 rounded-2xl p-3.5 sm:p-4 text-center transition-all group">
+                            <span class="block text-base sm:text-lg font-bold text-stone-900 group-hover:text-saffron-700 amount-label tabular-nums" data-usd="250">$250</span>
+                            <span class="block text-[11px] text-stone-500 mt-1" data-i18n="tier3">Dharma Library Wing</span>
+                        </button>
+                        <button type="button" onclick="selectAmount(1000, this)" class="tier-btn border-2 border-stone-200 hover:border-saffron-500 rounded-2xl p-3.5 sm:p-4 text-center transition-all group">
+                            <span class="block text-base sm:text-lg font-bold text-stone-900 group-hover:text-saffron-700 amount-label tabular-nums" data-usd="1000">$1,000</span>
+                            <span class="block text-[11px] text-stone-500 mt-1" data-i18n="tier4">Marble Honor Wall</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Custom Amount Input -->
+                <div class="mt-5">
+                    <label for="customAmount" class="block text-xs font-medium text-stone-500 mb-1.5" data-i18n="customAmtLabel">Or Enter Custom Offering Amount:</label>
+                    <div class="relative">
+                        <span id="currencySymbolInput" class="absolute inset-y-0 left-0 pl-4 flex items-center text-lg font-bold text-stone-500">$</span>
+                        <input type="number" id="customAmount" value="100" min="1" step="any" class="w-full pl-12 pr-4 py-3.5 rounded-xl bg-stone-50/50 border border-stone-300 focus:bg-white focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 text-lg font-bold text-stone-900 tabular-nums transition" placeholder="Enter amount">
+                    </div>
+                </div>
+
+                <!-- Donor Details Form -->
+                <form id="donationForm" onsubmit="processDonation(event)" class="mt-6 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="fullNameLabel">Full Name *</label>
+                            <input type="text" id="donorName" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 text-sm transition" placeholder="e.g., David Chen">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="emailLabel">Email Address (For Receipt) *</label>
+                            <input type="email" id="donorEmail" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 text-sm transition" placeholder="name@example.com">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="countryLabel">Country / Region *</label>
+                            <input type="text" id="donorCountry" required class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 text-sm transition" placeholder="e.g., United States, India, Japan">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="taxIdLabel">Tax ID / PAN / SSN (Optional)</label>
+                            <input type="text" id="donorTaxId" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 text-sm uppercase transition" placeholder="Optional Tax Reference">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="prayerLabel">Merit Dedication / Prayer Note (Optional)</label>
+                        <input type="text" id="donorPrayer" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:ring-2 focus:ring-saffron-500 focus:border-saffron-500 text-sm transition" placeholder="Dedicated to family harmony, peace, and well-being...">
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="pt-2">
+                        <label class="block text-xs font-semibold text-stone-700 mb-2.5" data-i18n="paymentHeading">Select Payment Method:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Credit/Debit Card" checked onchange="togglePaymentPanels()" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-stone-200 hover:border-stone-300 peer-checked:border-saffron-600 peer-checked:bg-saffron-50/80 text-center transition-all h-full flex flex-col justify-center items-center">
+                                    <i class="fas fa-credit-card text-maroon-800 text-base mb-1"></i>
+                                    <span class="block text-[11px] font-semibold text-stone-800" data-i18n="pmCard">Card</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Apple Pay" onchange="togglePaymentPanels()" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-stone-200 hover:border-stone-300 peer-checked:border-saffron-600 peer-checked:bg-saffron-50/80 text-center transition-all h-full flex flex-col justify-center items-center">
+                                    <i class="fab fa-apple text-stone-900 text-lg mb-1"></i>
+                                    <span class="block text-[11px] font-semibold text-stone-800" data-i18n="pmApple">Apple Pay</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="Cryptocurrency" onchange="togglePaymentPanels()" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-stone-200 hover:border-stone-300 peer-checked:border-saffron-600 peer-checked:bg-saffron-50/80 text-center transition-all h-full flex flex-col justify-center items-center">
+                                    <i class="fab fa-bitcoin text-saffron-600 text-lg mb-1"></i>
+                                    <span class="block text-[11px] font-semibold text-stone-800" data-i18n="pmCrypto">Crypto</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="paymentMethod" value="UPI / QR Scan" onchange="togglePaymentPanels()" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-stone-200 hover:border-stone-300 peer-checked:border-saffron-600 peer-checked:bg-saffron-50/80 text-center transition-all h-full flex flex-col justify-center items-center">
+                                    <i class="fas fa-qrcode text-maroon-800 text-base mb-1"></i>
+                                    <span class="block text-[11px] font-semibold text-stone-800" data-i18n="pmQr">QR Scan</span>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer col-span-2 sm:col-span-1">
+                                <input type="radio" name="paymentMethod" value="SWIFT Wire" onchange="togglePaymentPanels()" class="peer sr-only">
+                                <div class="p-3 rounded-xl border border-stone-200 hover:border-stone-300 peer-checked:border-saffron-600 peer-checked:bg-saffron-50/80 text-center transition-all h-full flex flex-col justify-center items-center">
+                                    <i class="fas fa-university text-maroon-800 text-base mb-1"></i>
+                                    <span class="block text-[11px] font-semibold text-stone-800" data-i18n="pmWire">SWIFT Wire</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- 1. EXPANDED CARD PAYMENT PANEL -->
+                        <div id="cardPaymentPanel" class="mt-4 p-5 rounded-2xl bg-stone-50 border border-stone-200/90 space-y-4 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-stone-200/70">
+                                <span class="text-xs font-bold uppercase tracking-wider text-maroon-900 flex items-center" data-i18n="cardPanelTitle">
+                                    <i class="fas fa-lock text-saffron-600 mr-2"></i> Card Payment Details
+                                </span>
+                                <div class="flex items-center space-x-2 text-stone-500 text-lg">
+                                    <i class="fab fa-cc-visa text-blue-800" title="Visa"></i>
+                                    <i class="fab fa-cc-mastercard text-red-600" title="Mastercard"></i>
+                                    <i class="fab fa-cc-amex text-sky-700" title="American Express"></i>
+                                    <i class="fab fa-cc-discover text-amber-600" title="Discover"></i>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="cardHolderName" class="block text-[11px] font-semibold text-stone-600 mb-1" data-i18n="cardHolderLabel">Name on Card</label>
+                                <input type="text" id="cardHolderName" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-stone-300 focus:ring-2 focus:ring-saffron-500 text-sm" placeholder="DAVID CHEN">
+                            </div>
+
+                            <div>
+                                <label for="cardNumberInput" class="block text-[11px] font-semibold text-stone-600 mb-1" data-i18n="cardNumberLabel">Card Number</label>
+                                <div class="relative">
+                                    <input type="text" id="cardNumberInput" inputmode="numeric" maxlength="19" oninput="formatCardNumber(this)" class="w-full pl-4 pr-11 py-2.5 rounded-xl bg-white border border-stone-300 focus:ring-2 focus:ring-saffron-500 text-sm font-mono tracking-wider tabular-nums" placeholder="4532 •••• •••• 8890">
+                                    <i class="fas fa-credit-card text-stone-400 absolute right-3.5 top-3"></i>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label for="cardExpiry" class="block text-[11px] font-semibold text-stone-600 mb-1" data-i18n="cardExpiryLabel">Expiry (MM/YY)</label>
+                                    <input type="text" id="cardExpiry" inputmode="numeric" maxlength="5" oninput="formatExpiry(this)" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-stone-300 focus:ring-2 focus:ring-saffron-500 text-sm font-mono tabular-nums" placeholder="08/29">
+                                </div>
+                                <div>
+                                    <label for="cardCvv" class="block text-[11px] font-semibold text-stone-600 mb-1" data-i18n="cardCvvLabel">CVV / CVC</label>
+                                    <input type="password" id="cardCvv" inputmode="numeric" maxlength="4" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-stone-300 focus:ring-2 focus:ring-saffron-500 text-sm font-mono tabular-nums" placeholder="•••">
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="cardPostal" class="block text-[11px] font-semibold text-stone-600 mb-1" data-i18n="cardZipLabel">Billing ZIP / Postal</label>
+                                    <input type="text" id="cardPostal" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-stone-300 focus:ring-2 focus:ring-saffron-500 text-sm font-mono" placeholder="94107">
+                                </div>
+                            </div>
+
+                            <p class="text-[11px] text-stone-500 flex items-center" data-i18n="cardSecurityNote">
+                                <i class="fas fa-shield-halved text-emerald-600 mr-1.5"></i>
+                                3D Secure 2.0 authentication supported for international cards (Visa, Mastercard, RuPay, Amex).
+                            </p>
+                        </div>
+
+                        <!-- 2. EXPANDED APPLE PAY PANEL -->
+                        <div id="applePayPanel" class="hidden mt-4 p-5 rounded-2xl bg-stone-900 text-white border border-stone-700 space-y-4 transition-all">
+                            <div class="flex items-center justify-between border-b border-stone-800 pb-3">
+                                <div class="flex items-center space-x-2.5">
+                                    <i class="fab fa-apple text-2xl text-white"></i>
+                                    <div>
+                                        <p class="text-sm font-bold tracking-tight" data-i18n="applePayTitle">Apple Pay Express Checkout</p>
+                                        <p class="text-[11px] text-stone-400" data-i18n="applePaySub">Safari • iOS • iPadOS • macOS Wallet</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold uppercase tracking-wider bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 rounded-full" data-i18n="applePayTokenBadge">
+                                    Device Tokenized
+                                </span>
+                            </div>
+
+                            <div class="bg-stone-950/80 rounded-xl p-4 border border-stone-800 space-y-2.5 text-xs">
+                                <div class="flex justify-between">
+                                    <span class="text-stone-400" data-i18n="appleMerchantLbl">Merchant:</span>
+                                    <span class="font-semibold text-white">BIC TECHNOLOGIES</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-stone-400" data-i18n="appleCardLbl">Wallet Card:</span>
+                                    <span class="font-mono text-stone-200">Apple Card / Visa •••• 4921</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-stone-400" data-i18n="appleTotalLbl">Offering Total:</span>
+                                    <span class="font-bold text-saffron-400 text-sm tabular-nums" id="applePayAmountDisplay">$100 (USD)</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-1">
+                                <p class="text-[11px] text-stone-400 flex items-center" data-i18n="appleBiometricNote">
+                                    <i class="fas fa-fingerprint text-saffron-400 text-base mr-2"></i>
+                                    Double-click side button or use Face ID / Touch ID to authorize.
+                                </p>
+                                <button type="button" onclick="triggerApplePayExpress()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-stone-100 text-stone-950 font-bold text-xs flex items-center justify-center space-x-2 shadow transition shrink-0">
+                                    <i class="fab fa-apple text-base"></i>
+                                    <span data-i18n="applePayBtn">Pay with Apple Pay</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. CRYPTOCURRENCY PAYMENT PANEL -->
+                        <div id="cryptoPaymentPanel" class="hidden mt-4 p-5 rounded-2xl bg-gradient-to-br from-stone-900 via-stone-900 to-maroon-950 text-stone-100 border border-saffron-500/30 space-y-4 transition-all">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-stone-800 pb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-saffron-400 flex items-center" data-i18n="cryptoTitle">
+                                    <i class="fab fa-bitcoin text-base mr-2"></i> Direct Crypto Offering (On-Chain)
+                                </span>
+                                <span class="text-[11px] text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full" data-i18n="cryptoZeroFee">
+                                    0% Platform Fee
+                                </span>
+                            </div>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                <button type="button" onclick="selectCrypto('USDT-TRC20', 'USDT', 'TRON (TRC20)', 'TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE', this)" class="crypto-btn border-2 border-saffron-500 bg-saffron-500/15 rounded-xl p-2.5 text-center transition">
+                                    <span class="block text-xs font-bold text-white">USDT</span>
+                                    <span class="block text-[10px] text-saffron-300">TRC20</span>
+                                </button>
+                                <button type="button" onclick="selectCrypto('USDT-ERC20', 'USDT', 'Ethereum (ERC20)', '0x71C7656EC7ab88b098defB751B7401B5f6d8976F', this)" class="crypto-btn border border-stone-700 hover:border-saffron-400 rounded-xl p-2.5 text-center transition">
+                                    <span class="block text-xs font-bold text-white">USDT</span>
+                                    <span class="block text-[10px] text-stone-400">ERC20</span>
+                                </button>
+                                <button type="button" onclick="selectCrypto('BTC', 'BTC', 'Bitcoin Network', 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh', this)" class="crypto-btn border border-stone-700 hover:border-saffron-400 rounded-xl p-2.5 text-center transition">
+                                    <span class="block text-xs font-bold text-white">BTC</span>
+                                    <span class="block text-[10px] text-stone-400">SegWit</span>
+                                </button>
+                                <button type="button" onclick="selectCrypto('ETH', 'ETH', 'Ethereum Mainnet', '0x71C7656EC7ab88b098defB751B7401B5f6d8976F', this)" class="crypto-btn border border-stone-700 hover:border-saffron-400 rounded-xl p-2.5 text-center transition">
+                                    <span class="block text-xs font-bold text-white">ETH</span>
+                                    <span class="block text-[10px] text-stone-400">ERC20</span>
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center bg-stone-950/80 p-4 rounded-2xl border border-stone-800">
+                                <div class="sm:col-span-4 text-center">
+                                    <div class="bg-white p-2 rounded-xl inline-block">
+                                        <img id="cryptoQrImage"
+                                             src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE"
+                                             onerror="this.src='https://placehold.co/140x140/ffffff/240706?text=Crypto+QR'"
+                                             alt="Crypto Wallet QR"
+                                             class="w-28 h-28 rounded-lg">
+                                    </div>
+                                    <p class="text-[10px] text-stone-400 mt-1.5" data-i18n="cryptoScanHint">Scan with Wallet App</p>
+                                </div>
+
+                                <div class="sm:col-span-8 space-y-2.5 text-xs">
+                                    <div class="flex justify-between">
+                                        <span class="text-stone-400" data-i18n="cryptoNetLbl">Network:</span>
+                                        <span class="font-semibold text-saffron-300" id="cryptoNetworkName">TRON (TRC20)</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-stone-400" data-i18n="cryptoEstLbl">Approx. Value:</span>
+                                        <span class="font-bold text-emerald-400 tabular-nums" id="cryptoApproxValue">~100.00 USDT</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-stone-400 block mb-1" data-i18n="cryptoAddrLbl">Deposit Address:</span>
+                                        <div class="flex items-center justify-between gap-2 bg-stone-900 px-3 py-2 rounded-xl border border-stone-700">
+                                            <span class="font-mono text-[11px] text-white truncate" id="cryptoWalletAddress">TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE</span>
+                                            <button type="button" onclick="copyCryptoAddress()" class="text-saffron-400 hover:text-white shrink-0" title="Copy Wallet Address">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="text-[11px] text-amber-200/80 flex items-start" data-i18n="cryptoWarn">
+                                <i class="fas fa-triangle-exclamation text-saffron-400 mr-2 mt-0.5 shrink-0"></i>
+                                Send only the selected asset on its matching network to avoid permanent loss of funds.
+                            </p>
+                        </div>
+
+                        <!-- 4. QR CODE PAYMENT BOX (Updated with New bic QR.PNG Image) -->
+                        <div id="qrPaymentContainer" class="hidden mt-4 p-5 rounded-2xl bg-gradient-to-br from-stone-50 to-saffron-50/70 border-2 border-dashed border-saffron-400 text-center transition-all">
+                            <span class="inline-block px-3 py-1 rounded-full bg-saffron-100 text-maroon-900 text-[11px] font-bold uppercase tracking-wider mb-3">
+                                <i class="fas fa-bolt text-saffron-600 mr-1"></i> BIC TECHNOLOGIES • SCAN &amp; PAY
+                            </span>
+                            
+                            <div class="bg-white p-3 rounded-2xl shadow-md inline-block border border-stone-200 mx-auto max-w-[230px]">
+                                <img id="dynamicQrImage" 
+                                     src="bic QR.PNG" 
+                                     onerror="this.src='https://placehold.co/190x190/ffffff/3b0d0b?text=BIC+QR'"
+                                     alt="BIC Technologies Scan & Pay QR Code" 
+                                     class="w-44 h-44 object-contain mx-auto rounded-lg">
+                            </div>
+
+                            <p class="text-sm font-bold text-maroon-900 mt-3 tabular-nums">
+                                <span data-i18n="qrAmtPrefix">Amount to Scan:</span> <span id="qrAmountDisplay" class="text-saffron-700">$100 (USD)</span>
+                            </p>
+                            <p class="text-xs text-stone-500 mt-1" data-i18n="qrSub">
+                                Scan with any UPI app (GPay, PhonePe, Paytm) or banking QR scanner
+                            </p>
+
+                            <div class="mt-3 inline-flex items-center space-x-2 bg-white px-3.5 py-1.5 rounded-xl border border-stone-200 text-xs">
+                                <span class="text-stone-500">UPI ID:</span>
+                                <span class="font-mono font-bold text-stone-800">BICTECHNOLOGIES5@iob</span>
+                                <button type="button" onclick="copyText('BICTECHNOLOGIES5@iob')" class="text-saffron-600 hover:text-maroon-900 font-semibold ml-1" title="Copy UPI ID">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 mt-4 rounded-xl bg-gradient-to-r from-maroon-800 to-maroon-950 hover:from-saffron-600 hover:to-maroon-900 text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2.5">
+                        <i class="fas fa-lock text-saffron-400"></i>
+                        <span data-i18n="submitBtn">Complete Sacred Contribution</span>
+                    </button>
+
+                    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] sm:text-xs text-stone-400 pt-2">
+                        <span><i class="fas fa-shield-halved text-emerald-600 mr-1"></i> <span data-i18n="secTls">256-Bit TLS Encrypted</span></span>
+                        <span>•</span>
+                        <span data-i18n="secPci">PCI-DSS Level 1 &amp; Public Open Ledger Verified</span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Column: LIVE OPEN LEDGER (Slow Auto-Scrolling) + Official Wire Details -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white rounded-3xl shadow-elevated border border-stone-200/90 overflow-hidden">
+                    <div class="bg-gradient-to-r from-maroon-950 to-stone-900 px-6 py-4 flex items-center justify-between border-b border-saffron-500/20">
+                        <div class="flex items-center space-x-2.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <div>
+                                <h3 class="text-sm font-bold text-white tracking-wide flex items-center" data-i18n="ledgerCardTitle">
+                                    BIC Public Open Ledger
+                                </h3>
+                                <p class="text-[11px] text-stone-400" data-i18n="ledgerCardSub">Live Global Contribution Feed • Hover to Pause</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-mono uppercase tracking-wider bg-saffron-500/20 text-saffron-300 border border-saffron-400/30 px-2.5 py-1 rounded-full">
+                            OPEN-LEDGER v2.6
+                        </span>
+                    </div>
+
+                    <div class="bg-stone-100/90 px-5 py-2 border-b border-stone-200/80 flex justify-between text-[10px] font-bold uppercase tracking-wider text-stone-500">
+                        <span data-i18n="ledgerColDonor">Patron &amp; Country</span>
+                        <span data-i18n="ledgerColAmt">Amount &amp; Gateway</span>
+                    </div>
+
+                    <div class="ledger-ticker-viewport ledger-mask h-[340px] overflow-hidden relative bg-stone-50/50 px-4">
+                        <div id="openLedgerTrack" class="ledger-ticker-track space-y-2.5 py-3"></div>
+                    </div>
+
+                    <div class="bg-white px-5 py-3.5 border-t border-stone-200/80 flex items-center justify-between text-xs">
+                        <span class="text-stone-500 text-[11px] inline-flex items-center">
+                            <i class="fas fa-shield-check text-emerald-600 mr-1.5"></i>
+                            <span data-i18n="ledgerAuditedNote">Audited On-Chain &amp; Bank Sync</span>
+                        </span>
+                        <button type="button" onclick="openFullLedgerModal()" class="text-maroon-900 hover:text-saffron-700 font-bold text-xs inline-flex items-center transition">
+                            <span data-i18n="viewAllLedgerBtn">View Full Ledger</span>
+                            <i class="fas fa-arrow-up-right-from-square ml-1.5 text-[10px]"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Direct International Wire Card -->
+                <div class="bg-stone-900 text-stone-200 rounded-3xl p-6 sm:p-7 shadow-soft border border-stone-800">
+                    <div class="flex items-center justify-between gap-2 mb-3.5">
+                        <h3 class="text-base font-bold text-white flex items-center" data-i18n="wireTitle">
+                            <i class="fas fa-landmark text-saffron-400 mr-2.5"></i>
+                            Official Wire &amp; SWIFT Details
+                        </h3>
+                        <span class="text-[11px] bg-emerald-500/15 text-emerald-300 px-2.5 py-0.5 rounded-full border border-emerald-500/30 font-medium shrink-0" data-i18n="verifiedBadge">
+                            Verified Receiving Bank
+                        </span>
+                    </div>
+                    <p class="text-xs text-stone-400 mb-4 leading-relaxed" data-i18n="wireDesc">
+                        For institutional grants or direct international wire transfers (SWIFT / NEFT / RTGS), use our official receiving bank details:
+                    </p>
+
+                    <div class="space-y-2.5 text-xs bg-stone-950/70 p-4 rounded-2xl border border-stone-800">
+                        <div class="flex justify-between gap-2">
+                            <span class="text-stone-400" data-i18n="beneficiaryLbl">Beneficiary:</span>
+                            <span class="font-semibold text-white text-right">BIC TECHNOLOGIES</span>
+                        </div>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-stone-400" data-i18n="acctLbl">Account No:</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-mono font-bold text-saffron-400 tabular-nums">386302000000005</span>
+                                <button type="button" onclick="copyText('386302000000005')" class="text-xs bg-stone-800 hover:bg-stone-700 px-2 py-1 rounded text-stone-200 transition" title="Copy Account Number">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-stone-400">IFSC Code:</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-mono font-semibold text-white">IOBA0003863</span>
+                                <button type="button" onclick="copyText('IOBA0003863')" class="text-xs bg-stone-800 hover:bg-stone-700 px-2 py-1 rounded text-stone-200 transition" title="Copy IFSC">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center gap-2">
+                            <span class="text-stone-400">SWIFT Code:</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="font-mono font-semibold text-white">IOBAINBB044</span>
+                                <button type="button" onclick="copyText('IOBAINBB044')" class="text-xs bg-stone-800 hover:bg-stone-700 px-2 py-1 rounded text-stone-200 transition" title="Copy SWIFT">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between gap-2">
+                            <span class="text-stone-400" data-i18n="bankLbl">Bank:</span>
+                            <span class="font-medium text-stone-300 text-right">Indian Overseas Bank (IOB)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Honor Plaque Notice -->
+                <div class="bg-gradient-to-br from-saffron-50 to-amber-100/70 rounded-3xl p-5 border border-saffron-200/90 shadow-soft">
+                    <div class="flex items-start space-x-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-saffron-500 to-maroon-800 text-white flex items-center justify-center shrink-0 text-base shadow-md">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-maroon-900 text-sm" data-i18n="plaqueTitle">Founding Patron Marble Inscription</h4>
+                            <p class="text-xs text-stone-700 mt-1 leading-relaxed" data-i18n="plaqueDesc">
+                                Donors contributing $1,000 USD (or equivalent in fiat or crypto) and above will have their name engraved on the BIC Dharma Hall Founding Patron Marble Wall.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Construction Phases Section -->
+    <section id="phases" class="py-16 sm:py-20 bg-white border-y border-stone-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+                <span class="text-saffron-600 font-bold text-xs uppercase tracking-widest" data-i18n="phasesEyebrow">Architectural Roadmap</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-maroon-900 mt-2 tracking-tight" data-i18n="phasesTitle">4 Phases of Temple Construction</h2>
+                <p class="text-stone-600 mt-2.5 text-sm sm:text-base" data-i18n="phasesSub">Traditional Buddhist sacred geometry combined with sustainable, low-impact engineering.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="rounded-2xl border border-emerald-200/90 bg-emerald-50/40 p-6 flex flex-col justify-between shadow-soft">
+                    <div>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-600 text-white text-[11px] font-bold mb-4" data-i18n="p1Badge">
+                            <i class="fas fa-check mr-1.5"></i> Phase 1 • Completed
+                        </span>
+                        <h3 class="text-lg font-bold text-stone-900 mb-2" data-i18n="p1Title">Sacred Land &amp; Foundation</h3>
+                        <p class="text-xs text-stone-600 leading-relaxed mb-5" data-i18n="p1Desc">5-acre sanctuary land acquired, soil consecrated by senior international Sangha elders, and seismic foundation completed.</p>
+                    </div>
+                    <div class="w-full bg-emerald-200/80 h-2 rounded-full overflow-hidden">
+                        <div class="bg-emerald-600 h-2 rounded-full w-full"></div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border-2 border-saffron-500 bg-saffron-50/50 p-6 flex flex-col justify-between shadow-md">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-saffron-600 text-white text-[11px] font-bold mb-4 tabular-nums" data-i18n="p2Badge">
+                            Phase 2 • In Progress (75%)
+                        </span>
+                        <h3 class="text-lg font-bold text-stone-900 mb-2" data-i18n="p2Title">Main Meditation Hall</h3>
+                        <p class="text-xs text-stone-600 leading-relaxed mb-5" data-i18n="p2Desc">Column-free grand meditation sanctuary accommodating 1,500 practitioners with natural ventilation and acoustic stillness.</p>
+                    </div>
+                    <div class="w-full bg-saffron-200 h-2 rounded-full overflow-hidden">
+                        <div class="bg-saffron-600 h-2 rounded-full w-3/4"></div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-stone-200 bg-stone-50/80 p-6 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-stone-200 text-stone-700 text-[11px] font-bold mb-4" data-i18n="p3Badge">
+                            Phase 3 • Next Milestone
+                        </span>
+                        <h3 class="text-lg font-bold text-stone-900 mb-2" data-i18n="p3Title">45-Ft Golden Buddha &amp; Stupa</h3>
+                        <p class="text-xs text-stone-600 leading-relaxed mb-5" data-i18n="p3Desc">Installation of the 45-foot bronze-gilded Peace Buddha statue and traditional relic Stupa surrounded by lotus courts.</p>
+                    </div>
+                    <div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                        <div class="bg-stone-400 h-2 rounded-full w-1/5"></div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-stone-200 bg-stone-50/80 p-6 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-stone-200 text-stone-700 text-[11px] font-bold mb-4" data-i18n="p4Badge">
+                            Phase 4 • Planned
+                        </span>
+                        <h3 class="text-lg font-bold text-stone-900 mb-2" data-i18n="p4Title">Dharma Library &amp; Dana Hall</h3>
+                        <p class="text-xs text-stone-600 leading-relaxed mb-5" data-i18n="p4Desc">Archive of Pali, Sanskrit, and Asian Buddhist texts alongside a free daily community dining and wellness hall.</p>
+                    </div>
+                    <div class="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                        <div class="bg-stone-300 h-2 rounded-full w-0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency & Governance Section -->
+    <section id="transparency" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-maroon-900 to-maroon-950 rounded-3xl p-8 sm:p-12 text-white grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-elevated border border-saffron-500/20">
+            <div class="lg:col-span-7 space-y-5">
+                <span class="text-saffron-400 text-xs font-bold uppercase tracking-widest" data-i18n="transEyebrow">100% Financial Accountability</span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold leading-tight" data-i18n="transTitle">How Every Offering Is Utilized</h2>
+                <p class="text-stone-300 text-sm sm:text-base leading-relaxed" data-i18n="transDesc">
+                    Bodhi International Center (BIC) follows strict international non-profit governance. Independent third-party financial audits and construction milestones are published quarterly.
+                </p>
+
+                <div class="pt-1">
+                    <div class="flex h-3 rounded-full overflow-hidden bg-white/10">
+                        <div class="bg-saffron-400 h-full" style="width: 88%" title="88% Direct Temple Construction"></div>
+                        <div class="bg-emerald-400 h-full" style="width: 8%" title="8% Community Welfare & Dana"></div>
+                        <div class="bg-sky-300 h-full" style="width: 4%" title="4% Governance & Auditing"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-2">
+                    <div class="bg-white/10 border border-white/10 rounded-2xl p-4">
+                        <span class="text-2xl font-bold text-saffron-400 tabular-nums">88%</span>
+                        <p class="text-xs text-stone-300 mt-1" data-i18n="alloc1">Temple Construction</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/10 rounded-2xl p-4">
+                        <span class="text-2xl font-bold text-emerald-400 tabular-nums">8%</span>
+                        <p class="text-xs text-stone-300 mt-1" data-i18n="alloc2">Community &amp; Dana</p>
+                    </div>
+                    <div class="bg-white/10 border border-white/10 rounded-2xl p-4">
+                        <span class="text-2xl font-bold text-sky-300 tabular-nums">4%</span>
+                        <p class="text-xs text-stone-300 mt-1" data-i18n="alloc3">Audit &amp; Governance</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-white text-stone-800 rounded-2xl p-6 sm:p-7 space-y-4 shadow-lg">
+                <h3 class="font-bold text-maroon-900 text-base border-b border-stone-100 pb-3" data-i18n="docsTitle">Official Governance Documents</h3>
+                <div class="space-y-3 text-xs sm:text-sm">
+                    <button type="button" onclick="openFullLedgerModal()" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-saffron-50/70 hover:bg-saffron-100/80 border border-saffron-300/80 transition text-left group">
+                        <span class="font-semibold text-maroon-900"><i class="fas fa-book-open text-saffron-600 mr-2.5"></i> <span data-i18n="docLedger">Live Public Open Ledger (Real-Time)</span></span>
+                        <i class="fas fa-arrow-up-right-from-square text-saffron-700"></i>
+                    </button>
+                    <button type="button" onclick="showToast('Preparing Tax-Exemption & FCRA Certificate (PDF)...')" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-stone-50 hover:bg-saffron-50 border border-stone-200/70 transition text-left group">
+                        <span class="font-medium text-stone-800 group-hover:text-maroon-900"><i class="fas fa-file-pdf text-red-600 mr-2.5"></i> Tax-Exempt &amp; FCRA Registration</span>
+                        <i class="fas fa-download text-stone-400 group-hover:text-saffron-600"></i>
+                    </button>
+                    <button type="button" onclick="showToast('Preparing Audited Financial Statement 2025–26 (PDF)...')" class="w-full flex items-center justify-between p-3.5 rounded-xl bg-stone-50 hover:bg-saffron-50 border border-stone-200/70 transition text-left group">
+                        <span class="font-medium text-stone-800 group-hover:text-maroon-900"><i class="fas fa-file-pdf text-red-600 mr-2.5"></i> Independent Audit Report (2025–26)</span>
+                        <i class="fas fa-download text-stone-400 group-hover:text-saffron-600"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-stone-950 text-stone-400 py-14 border-t border-stone-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
+            <div>
+                <h4 class="text-white font-serif font-bold text-lg mb-3" data-i18n="footerBrand">BIC — Bodhi International Center</h4>
+                <p class="text-xs leading-relaxed text-stone-400" data-i18n="footerDesc">
+                    Founded by HariKrishnan &amp; Sivaraj — a registered non-profit sanctuary dedicated to compassion, mindfulness, and universal peace.
+                </p>
+                <p class="text-xs mt-4 text-stone-500">© 2026 Bodhi International Center (BIC). All Rights Reserved.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3.5" data-i18n="footerHqTitle">Global Headquarters</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li class="flex items-start"><i class="fas fa-map-marker-alt text-saffron-400 mr-2.5 mt-0.5"></i> 108 Bodhi Dharma Avenue, Peace Sanctuary District, India</li>
+                    <li class="flex items-center"><i class="fas fa-phone text-saffron-400 mr-2.5"></i> +91 44 2819 0000 • +1 (415) 890-4321</li>
+                    <li class="flex items-center"><i class="fas fa-envelope text-saffron-400 mr-2.5"></i> philanthropy@bic-sanctuary.org</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3.5" data-i18n="footerChaptersTitle">International Chapters</h4>
+                <p class="text-xs leading-relaxed text-stone-400">
+                    United States • United Kingdom • Japan • Singapore • Sri Lanka • Australia • Germany • Canada
+                </p>
+                <div class="flex space-x-4 mt-4 text-base">
+                    <a href="#" class="hover:text-saffron-400 transition" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="hover:text-saffron-400 transition" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-saffron-400 transition" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-saffron-400 transition" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FULL OPEN LEDGER MODAL -->
+    <div id="fullLedgerModal" class="fixed inset-0 z-50 hidden bg-stone-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[88vh] flex flex-col shadow-elevated border border-stone-200 overflow-hidden">
+            <div class="bg-maroon-950 text-white px-6 py-4 flex items-center justify-between border-b border-saffron-500/20">
+                <div>
+                    <h3 class="text-base sm:text-lg font-serif font-bold flex items-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 mr-2.5 animate-pulse"></span>
+                        <span data-i18n="modalLedgerTitle">BIC Public Open Ledger — Verified Global Transactions</span>
+                    </h3>
+                    <p class="text-xs text-stone-400 mt-0.5" data-i18n="modalLedgerSub">Real-time transparent audit log of all incoming offerings across fiat &amp; crypto gateways</p>
+                </div>
+                <button type="button" onclick="closeFullLedgerModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-4 bg-stone-50 border-b border-stone-200 flex flex-col sm:flex-row gap-3 justify-between items-center">
+                <input type="text" id="ledgerSearchInput" oninput="renderFullLedgerTable()" placeholder="Search by donor name, country, payment method, or TX hash..." class="w-full sm:w-80 px-3.5 py-2 rounded-xl border border-stone-300 text-xs focus:ring-2 focus:ring-saffron-500 bg-white">
+                <span class="text-xs font-semibold text-stone-600 tabular-nums" id="fullLedgerCountLabel">Showing 10 Verified Entries</span>
+            </div>
+
+            <div class="overflow-auto flex-1">
+                <table class="w-full text-left border-collapse text-xs tabular-nums">
+                    <thead class="bg-stone-100 text-stone-600 uppercase text-[10px] tracking-wider sticky top-0 border-b border-stone-200">
+                        <tr>
+                            <th class="py-3 px-4">Ledger TX / Time</th>
+                            <th class="py-3 px-4">Patron Name</th>
+                            <th class="py-3 px-4">Country</th>
+                            <th class="py-3 px-4">Amount</th>
+                            <th class="py-3 px-4">Payment Method</th>
+                            <th class="py-3 px-4 text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fullLedgerTableBody" class="divide-y divide-stone-100"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Receipt Modal -->
+    <div id="receiptModal" class="fixed inset-0 z-50 hidden bg-stone-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-elevated border-2 border-saffron-400 relative">
+            <button type="button" onclick="closeModal()" class="no-print absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-600 transition">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-saffron-600" data-i18n="recConfirmed">Sacred Contribution Confirmed</span>
+                <h3 class="text-2xl font-serif font-bold text-maroon-900 mt-1">Sadhu! Sadhu! Sadhu!</h3>
+                <p class="text-xs text-stone-500 mt-1" data-i18n="recBlessing">May the Triple Gem bless you and your family with peace, health, and wisdom.</p>
+            </div>
+
+            <div class="mt-6 bg-stone-50 rounded-2xl p-4 border border-dashed border-stone-300 text-xs space-y-2.5 tabular-nums">
+                <div class="flex justify-between border-b border-stone-200 pb-2">
+                    <span class="text-stone-500" data-i18n="recNoLbl">Receipt &amp; Ledger ID:</span>
+                    <span class="font-mono font-bold text-stone-900" id="recId">BIC-2026-8841</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-stone-500" data-i18n="recNameLbl">Patron Name:</span>
+                    <span class="font-bold text-stone-900" id="recName">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-stone-500" data-i18n="recCountryLbl">Country:</span>
+                    <span class="font-medium text-stone-800" id="recCountry">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-stone-500" data-i18n="recAmtLbl">Contribution:</span>
+                    <span class="font-bold text-emerald-700 text-sm" id="recAmount">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-stone-500" data-i18n="recMethodLbl">Payment Method:</span>
+                    <span class="font-medium text-stone-800" id="recMethod">-</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-stone-500" data-i18n="recDateLbl">Date Issued:</span>
+                    <span class="font-medium text-stone-800" id="recDate">-</span>
+                </div>
+            </div>
+
+            <div class="no-print mt-6 flex gap-3">
+                <button type="button" onclick="window.print()" class="flex-1 py-3 rounded-xl bg-stone-800 hover:bg-stone-900 text-white text-xs font-semibold transition">
+                    <i class="fas fa-print mr-1.5"></i> <span data-i18n="printBtn">Print Certificate</span>
+                </button>
+                <button type="button" onclick="closeModal()" class="flex-1 py-3 rounded-xl bg-saffron-600 hover:bg-saffron-700 text-white text-xs font-semibold transition" data-i18n="doneBtn">
+                    Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification -->
+    <div id="toastBox" class="fixed bottom-5 right-5 z-50 hidden bg-stone-900 text-white px-5 py-3 rounded-xl shadow-elevated border border-saffron-500/40 text-xs sm:text-sm flex items-center space-x-2.5">
+        <i class="fas fa-info-circle text-saffron-400"></i>
+        <span id="toastMessage">Message</span>
+    </div>
+
+    <!-- Interactive Logic, Open Ledger & Multi-Language Dictionary -->
+    <script>
+        let currentCurrency = 'USD';
+        let currentSymbol = '$';
+        let currentRate = 1;
+        let selectedBaseUSD = 100;
+        let totalRaisedUSD = 412500;
+        const goalUSD = 600000;
+        let totalDonors = 4812;
+        let currentLang = 'en';
+
+        const BIC_QR_IMAGE_SRC = 'bic QR.PNG';
+
+        const openLedgerEntries = [
+            { tx: 'BIC-TX-9482', name: 'Kenji Takahashi', country: 'Japan', flag: '🇯🇵', amountText: '¥50,000', usdText: '$329', method: 'Apple Pay', time: '2 mins ago' },
+            { tx: 'BIC-TX-9481', name: 'Senthil Murugan', country: 'India', flag: '🇮🇳', amountText: '₹25,000', usdText: '$298', method: 'UPI / QR Scan', time: '7 mins ago' },
+            { tx: 'BIC-TX-9480', name: 'Elena Rostova', country: 'Germany', flag: '🇩🇪', amountText: '€500', usdText: '$543', method: 'USDT (TRC20)', time: '14 mins ago' },
+            { tx: 'BIC-TX-9479', name: 'David & Sarah Chen', country: 'United States', flag: '🇺🇸', amountText: '$1,000', usdText: '$1,000', method: 'Credit/Debit Card', time: '23 mins ago' },
+            { tx: 'BIC-TX-9478', name: 'Nattapong Srisai', country: 'Thailand', flag: '🇹🇭', amountText: '$250', usdText: '$250', method: 'BTC (SegWit)', time: '31 mins ago' },
+            { tx: 'BIC-TX-9477', name: 'Mei-Ling Tan', country: 'Singapore', flag: '🇸🇬', amountText: 'S$680', usdText: '$507', method: 'Apple Pay', time: '42 mins ago' },
+            { tx: 'BIC-TX-9476', name: 'Rohan Wickramasinghe', country: 'Sri Lanka', flag: '🇱🇰', amountText: '$150', usdText: '$150', method: 'Credit/Debit Card', time: '55 mins ago' },
+            { tx: 'BIC-TX-9475', name: 'Oliver Bennett', country: 'United Kingdom', flag: '🇬🇧', amountText: '£400', usdText: '$506', method: 'SWIFT Wire', time: '1 hr ago' },
+            { tx: 'BIC-TX-9474', name: 'Kavitha Subramanian', country: 'UAE', flag: '🇦🇪', amountText: 'AED 1,100', usdText: '$300', method: 'USDT (ERC20)', time: '1 hr ago' },
+            { tx: 'BIC-TX-9473', name: 'Liam O’Connor', country: 'Australia', flag: '🇦🇺', amountText: 'A$300', usdText: '$197', method: 'Credit/Debit Card', time: '2 hrs ago' }
+        ];
+
+        function getCountryFlag(countryName) {
+            const c = countryName.toLowerCase();
+            if (c.includes('india')) return '🇮🇳';
+            if (c.includes('japan')) return '🇯🇵';
+            if (c.includes('usa') || c.includes('united states') || c.includes('america')) return '🇺🇸';
+            if (c.includes('uk') || c.includes('united kingdom') || c.includes('britain')) return '🇬🇧';
+            if (c.includes('singapore')) return '🇸🇬';
+            if (c.includes('thailand')) return '🇹🇭';
+            if (c.includes('germany')) return '🇩🇪';
+            if (c.includes('australia')) return '🇦🇺';
+            if (c.includes('canada')) return '🇨🇦';
+            if (c.includes('uae') || c.includes('dubai') || c.includes('emirates')) return '🇦🇪';
+            if (c.includes('sri lanka')) return '🇱🇰';
+            return '🌐';
+        }
+
+        function getMethodBadgeStyle(method) {
+            const m = method.toLowerCase();
+            if (m.includes('usdt') || m.includes('btc') || m.includes('eth') || m.includes('crypto')) {
+                return 'bg-amber-100 text-amber-900 border-amber-300';
+            }
+            if (m.includes('apple')) {
+                return 'bg-stone-800 text-white border-stone-700';
+            }
+            if (m.includes('upi') || m.includes('qr')) {
+                return 'bg-emerald-100 text-emerald-900 border-emerald-300';
+            }
+            if (m.includes('swift') || m.includes('wire')) {
+                return 'bg-sky-100 text-sky-900 border-sky-300';
+            }
+            return 'bg-maroon-800/10 text-maroon-900 border-maroon-800/20';
+        }
+
+        function createLedgerCardHTML(item) {
+            const badgeClass = getMethodBadgeStyle(item.method);
+            return `
+                <div class="bg-white rounded-2xl p-3.5 border border-stone-200/90 shadow-sm hover:border-saffron-400 transition">
+                    <div class="flex items-start justify-between gap-2">
+                        <div class="min-w-0">
+                            <p class="text-xs font-bold text-stone-900 truncate">
+                                <span class="mr-1">${item.flag}</span>${item.name}
+                            </p>
+                            <p class="text-[11px] text-stone-500 mt-0.5 truncate">
+                                ${item.country} • <span class="font-mono text-[10px] text-stone-400">${item.tx}</span>
+                            </p>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <p class="text-xs font-bold text-emerald-700 tabular-nums">${item.amountText}</p>
+                            <p class="text-[10px] text-stone-400 tabular-nums">≈ ${item.usdText} USD</p>
+                        </div>
+                    </div>
+                    <div class="mt-2 pt-2 border-t border-stone-100 flex items-center justify-between text-[10px]">
+                        <span class="px-2 py-0.5 rounded-md border font-semibold ${badgeClass}">
+                            ${item.method}
+                        </span>
+                        <span class="text-stone-400">
+                            <i class="fas fa-check-circle text-emerald-500 mr-1"></i>${item.time}
+                        </span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderOpenLedgerTicker() {
+            const track = document.getElementById('openLedgerTrack');
+            if (!track) return;
+            const singleList = openLedgerEntries.map(createLedgerCardHTML).join('');
+            track.innerHTML = singleList + singleList;
+        }
+
+        function openFullLedgerModal() {
+            document.getElementById('fullLedgerModal').classList.remove('hidden');
+            renderFullLedgerTable();
+        }
+
+        function closeFullLedgerModal() {
+            document.getElementById('fullLedgerModal').classList.add('hidden');
+        }
+
+        function renderFullLedgerTable() {
+            const query = (document.getElementById('ledgerSearchInput')?.value || '').toLowerCase().trim();
+            const filtered = openLedgerEntries.filter(item =>
+                item.name.toLowerCase().includes(query) ||
+                item.country.toLowerCase().includes(query) ||
+                item.method.toLowerCase().includes(query) ||
+                item.tx.toLowerCase().includes(query)
+            );
+
+            const countLbl = document.getElementById('fullLedgerCountLabel');
+            if (countLbl) {
+                countLbl.textContent = `Showing ${filtered.length} Verified Entries`;
+            }
+
+            const tbody = document.getElementById('fullLedgerTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = filtered.map(item => `
+                <tr class="hover:bg-saffron-50/40 transition">
+                    <td class="py-3 px-4">
+                        <span class="font-mono font-bold text-stone-800 block">${item.tx}</span>
+                        <span class="text-[10px] text-stone-400">${item.time}</span>
+                    </td>
+                    <td class="py-3 px-4 font-semibold text-stone-900">${item.name}</td>
+                    <td class="py-3 px-4 text-stone-700">${item.flag} ${item.country}</td>
+                    <td class="py-3 px-4">
+                        <span class="font-bold text-emerald-700">${item.amountText}</span>
+                        <span class="text-[10px] text-stone-400 block">(${item.usdText} USD)</span>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-0.5 rounded-md border text-[10px] font-semibold ${getMethodBadgeStyle(item.method)}">${item.method}</span>
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                        <span class="inline-flex items-center text-emerald-700 font-semibold text-[11px]">
+                            <i class="fas fa-circle-check mr-1"></i> Confirmed
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        let selectedCrypto = {
+            code: 'USDT-TRC20',
+            symbol: 'USDT',
+            network: 'TRON (TRC20)',
+            address: 'TQn9Y2khEsLJW1ChVWFMSMeRDow5KcbLSE',
+            usdPrice: 1
+        };
+
+        const cryptoPricesUSD = {
+            'USDT-TRC20': 1,
+            'USDT-ERC20': 1,
+            'BTC': 92000,
+            'ETH': 3400
+        };
+
+        const translations = {
+            en: {
+                regLabel: 'Reg No:',
+                taxBadge: '501(c)(3) Equivalent, 80G & FCRA Certified',
+                topOpenLedger: 'Live Open Ledger',
+                topTransparency: 'Financial Transparency',
+                siteName: 'BIC — Bodhi International Center',
+                siteTagline: 'Bodhi International Center • Peace & Dharma Sanctuary',
+                navAbout: 'About Us',
+                navContribute: 'Contribute',
+                navPhases: 'Construction Phases',
+                navAudit: 'Audit & Reports',
+                navContact: 'Contact',
+                ctaDonate: 'Donate Now',
+                heroBadge: 'Official Global Fundraising Campaign • 2026',
+                heroTitle: 'Building a Sacred Sanctuary for World Peace & Mindfulness',
+                heroDesc: 'At Bodhi International Center (BIC), we are constructing a global Buddhist Vihara and Meditation Hall to preserve timeless teachings of compassion, wisdom, and inner stillness for generations to come.',
+                heroPrimaryBtn: 'Make a Sacred Offering',
+                heroSecondaryBtn: 'About & Founders',
+                heroFeat1: 'Instant Tax-Deductible Receipt',
+                heroFeat2: 'Card, Apple Pay & Crypto Ready',
+                heroFeat3: '100% Public Open Ledger',
+                liveStatus: 'Live Campaign Status',
+                countriesCount: '54 Countries',
+                goalLabel: 'Raised toward $600,000 USD Goal',
+                fundedLabel: 'Funded',
+                statPatrons: 'Global Patrons',
+                statBuild: 'Direct Build',
+                statTax: 'Tax Certified',
+                recentVerified: '2 mins ago • Recorded on BIC Open Ledger',
+                aboutEyebrow: 'About Us',
+                aboutTitle: 'Rooted in Compassion, Built for Timeless Peace',
+                aboutDesc: 'Bodhi International Center (BIC) is a non-profit spiritual, educational, and humanitarian sanctuary dedicated to mindfulness meditation, classical Buddhist scholarship, and transparent global philanthropy.',
+                foundersTag: 'Visionary Leadership',
+                foundersHeading: 'Founders',
+                coFoundersBadge: 'Co-Founders • BIC Sanctuary',
+                f1RoleBadge: 'Founder • Sanctuary & Dharma Vision',
+                f1Bio: 'HariKrishnan co-founded Bodhi International Center with a lifelong devotion to contemplative peace, classical heritage preservation, and sacred architectural harmony. He leads the sanctuary’s spiritual vision, meditation retreats, and cultural dialogue across international peace communities.',
+                f1Tag1: 'Meditation & Dharma',
+                f1Tag2: 'Sacred Architecture',
+                f2RoleBadge: 'Founder • Governance & Open Ledger',
+                f2Bio: 'Sivaraj co-founded Bodhi International Center to unite charitable stewardship with modern financial transparency. He oversees global operations, multi-currency endowment systems, construction milestones, and real-time Open Ledger accountability.',
+                f2Tag1: 'Open Ledger & Audit',
+                f2Tag2: 'Global Operations',
+                donateEyebrow: 'Sacred Contribution',
+                donateTitle: 'Choose Your Offering',
+                donateSubtitle: 'Select your currency, preset tier, or payment method below. Every confirmed contribution is published transparently on the BIC Live Open Ledger.',
+                freqOnce: 'One-Time Gift',
+                freqMonthly: 'Monthly Sustainer',
+                currencyLabel: 'Currency:',
+                tierHeading: 'Select Sacred Sponsorship Tier:',
+                tier1: '1 Sacred Brick',
+                tier2: 'Meditation Pillar',
+                tier3: 'Dharma Library Wing',
+                tier4: 'Marble Honor Wall',
+                customAmtLabel: 'Or Enter Custom Offering Amount:',
+                fullNameLabel: 'Full Name *',
+                emailLabel: 'Email Address (For Receipt) *',
+                countryLabel: 'Country / Region *',
+                taxIdLabel: 'Tax ID / PAN / SSN (Optional)',
+                prayerLabel: 'Merit Dedication / Prayer Note (Optional)',
+                paymentHeading: 'Select Payment Method:',
+                pmCard: 'Card',
+                pmApple: 'Apple Pay',
+                pmCrypto: 'Crypto',
+                pmQr: 'QR Scan',
+                pmWire: 'SWIFT Wire',
+                cardPanelTitle: 'Card Payment Details',
+                cardHolderLabel: 'Name on Card',
+                cardNumberLabel: 'Card Number',
+                cardExpiryLabel: 'Expiry (MM/YY)',
+                cardCvvLabel: 'CVV / CVC',
+                cardZipLabel: 'Billing ZIP / Postal',
+                cardSecurityNote: '3D Secure 2.0 authentication supported for international cards (Visa, Mastercard, RuPay, Amex).',
+                applePayTitle: 'Apple Pay Express Checkout',
+                applePaySub: 'Safari • iOS • iPadOS • macOS Wallet',
+                applePayTokenBadge: 'Device Tokenized',
+                appleMerchantLbl: 'Merchant:',
+                appleCardLbl: 'Wallet Card:',
+                appleTotalLbl: 'Offering Total:',
+                appleBiometricNote: 'Double-click side button or use Face ID / Touch ID to authorize.',
+                applePayBtn: 'Pay with Apple Pay',
+                cryptoTitle: 'Direct Crypto Offering (On-Chain)',
+                cryptoZeroFee: '0% Platform Fee',
+                cryptoScanHint: 'Scan with Wallet App',
+                cryptoNetLbl: 'Network:',
+                cryptoEstLbl: 'Approx. Value:',
+                cryptoAddrLbl: 'Deposit Address:',
+                cryptoWarn: 'Send only the selected asset on its matching network to avoid permanent loss of funds.',
+                qrAmtPrefix: 'Amount to Scan:',
+                qrSub: 'Scan with any UPI app (GPay, PhonePe, Paytm) or banking QR scanner',
+                submitBtn: 'Complete Sacred Contribution',
+                secTls: '256-Bit TLS Encrypted',
+                secPci: 'PCI-DSS Level 1 & Public Open Ledger Verified',
+                ledgerCardTitle: 'BIC Public Open Ledger',
+                ledgerCardSub: 'Live Global Contribution Feed • Hover to Pause',
+                ledgerColDonor: 'Patron & Country',
+                ledgerColAmt: 'Amount & Gateway',
+                ledgerAuditedNote: 'Audited On-Chain & Bank Sync',
+                viewAllLedgerBtn: 'View Full Ledger',
+                wireTitle: 'Official Wire & SWIFT Details',
+                verifiedBadge: 'Verified Receiving Bank',
+                wireDesc: 'For institutional grants or direct international wire transfers (SWIFT / NEFT / RTGS), use our official receiving bank details:',
+                beneficiaryLbl: 'Beneficiary:',
+                acctLbl: 'Account No:',
+                bankLbl: 'Bank:',
+                plaqueTitle: 'Founding Patron Marble Inscription',
+                plaqueDesc: 'Donors contributing $1,000 USD (or equivalent in fiat or crypto) and above will have their name engraved on the BIC Dharma Hall Founding Patron Marble Wall.',
+                phasesEyebrow: 'Architectural Roadmap',
+                phasesTitle: '4 Phases of Temple Construction',
+                phasesSub: 'Traditional Buddhist sacred geometry combined with sustainable, low-impact engineering.',
+                p1Badge: 'Phase 1 • Completed',
+                p1Title: 'Sacred Land & Foundation',
+                p1Desc: '5-acre sanctuary land acquired, soil consecrated by senior international Sangha elders, and seismic foundation completed.',
+                p2Badge: 'Phase 2 • In Progress (75%)',
+                p2Title: 'Main Meditation Hall',
+                p2Desc: 'Column-free grand meditation sanctuary accommodating 1,500 practitioners with natural ventilation and acoustic stillness.',
+                p3Badge: 'Phase 3 • Next Milestone',
+                p3Title: '45-Ft Golden Buddha & Stupa',
+                p3Desc: 'Installation of the 45-foot bronze-gilded Peace Buddha statue and traditional relic Stupa surrounded by lotus courts.',
+                p4Badge: 'Phase 4 • Planned',
+                p4Title: 'Dharma Library & Dana Hall',
+                p4Desc: 'Archive of Pali, Sanskrit, and Asian Buddhist texts alongside a free daily community dining and wellness hall.',
+                transEyebrow: '100% Financial Accountability',
+                transTitle: 'How Every Offering Is Utilized',
+                transDesc: 'Bodhi International Center (BIC) follows strict international non-profit governance. Independent third-party financial audits and construction milestones are published quarterly.',
+                alloc1: 'Temple Construction',
+                alloc2: 'Community & Dana',
+                alloc3: 'Audit & Governance',
+                docsTitle: 'Official Governance Documents',
+                docLedger: 'Live Public Open Ledger (Real-Time)',
+                footerBrand: 'BIC — Bodhi International Center',
+                footerDesc: 'Founded by HariKrishnan & Sivaraj — a registered non-profit sanctuary dedicated to compassion, mindfulness, and universal peace.',
+                footerHqTitle: 'Global Headquarters',
+                footerChaptersTitle: 'International Chapters',
+                modalLedgerTitle: 'BIC Public Open Ledger — Verified Global Transactions',
+                modalLedgerSub: 'Real-time transparent audit log of all incoming offerings across fiat & crypto gateways',
+                recConfirmed: 'Sacred Contribution Confirmed',
+                recBlessing: 'May the Triple Gem bless you and your family with peace, health, and wisdom.',
+                recNoLbl: 'Receipt & Ledger ID:',
+                recNameLbl: 'Patron Name:',
+                recCountryLbl: 'Country:',
+                recAmtLbl: 'Contribution:',
+                recMethodLbl: 'Payment Method:',
+                recDateLbl: 'Date Issued:',
+                printBtn: 'Print Certificate',
+                doneBtn: 'Done'
+            },
+            ta: {
+                regLabel: 'பதிவு எண்:',
+                taxBadge: '501(c)(3), 80G & FCRA வரி விலக்கு சான்றிதழ்',
+                topOpenLedger: 'நேரடி ஓப்பன் லெட்ஜர்',
+                topTransparency: 'நிதி வெளிப்படைத்தன்மை',
+                siteName: 'BIC — போதி சர்வதேச மையம்',
+                siteTagline: 'Bodhi International Center • அமைதி & தர்ம ஆலயம்',
+                navAbout: 'எங்களைப் பற்றி',
+                navContribute: 'பங்களிப்பு',
+                navPhases: 'கட்டுமான நிலைகள்',
+                navAudit: 'தணிக்கை & அறிக்கை',
+                navContact: 'தொடர்பு',
+                ctaDonate: 'இப்போது காணிக்கை',
+                heroBadge: 'அதிகாரப்பூர்வ உலகளாவிய நிதி திரட்டல் • 2026',
+                heroTitle: 'உலக அமைதிக்கும் மனவளத்திற்கும் புனித தர்ம ஆலயம்',
+                heroDesc: 'போதி சர்வதேச மையம் (BIC) சார்பாக கருணை, ஞானம் மற்றும் மன அமைதிக்கான சர்வதேச பௌத்த விகாரை மற்றும் தியான மண்டபம் கட்டமைக்கப்படுகிறது.',
+                heroPrimaryBtn: 'புனித காணிக்கை செலுத்துக',
+                heroSecondaryBtn: 'நிறுவனர்கள் & விவரம்',
+                heroFeat1: 'உடனடி வரி விலக்கு ரசீது',
+                heroFeat2: 'கார்ட், Apple Pay & கிரிப்டோ வசதி',
+                heroFeat3: '100% பொது ஓப்பன் லெட்ஜர்',
+                liveStatus: 'நேரடி நிதி நிலை',
+                countriesCount: '54 நாடுகள்',
+                goalLabel: '$600,000 USD இலக்கில் திரட்டப்பட்டது',
+                fundedLabel: 'நிறைவு',
+                statPatrons: 'உலகப் புரவலர்கள்',
+                statBuild: 'நேரடி கட்டுமானம்',
+                statTax: 'வரி சான்றிதழ்',
+                recentVerified: '2 நிமிடங்களுக்கு முன் • ஓப்பன் லெட்ஜரில் பதிவானது',
+                aboutEyebrow: 'எங்களைப் பற்றி',
+                aboutTitle: 'கருணையில் வேரூன்றி, அமைதிக்காக உருவாகும் ஆலயம்',
+                aboutDesc: 'போதி சர்வதேச மையம் (BIC) தியானப் பயிற்சி, ஆன்மீகக் கல்வி, சமூக நலன் மற்றும் வெளிப்படையான உலகளாவிய அறக்கொடைக்காகச் செயல்படும் ஒரு சேவை மையம் ஆகும்.',
+                foundersTag: 'நிறுவன வழிகாட்டுதல்',
+                foundersHeading: 'நிறுவனர்கள்',
+                coFoundersBadge: 'இணை நிறுவனர்கள் • BIC மையம்',
+                f1RoleBadge: 'நிறுவனர் • ஆன்மீக & தர்ம வழிகாட்டி',
+                f1Bio: 'ஹரிகிருஷ்ணன் (HariKrishnan) ஆழ்ந்த அமைதி, பாரம்பரியக் கலை மரபு மற்றும் புனிதக் கட்டடக் கலையின் மீது கொண்ட ஆர்வத்தால் BIC மையத்தை இணைந்து நிறுவினார். தியான முகாம்கள் மற்றும் ஆன்மீக வழிகாட்டுதலை முன்னெடுக்கிறார்.',
+                f1Tag1: 'தியானம் & தர்மம்',
+                f1Tag2: 'புனிதக் கட்டடக் கலை',
+                f2RoleBadge: 'நிறுவனர் • நிர்வாகம் & ஓப்பன் லெட்ஜர்',
+                f2Bio: 'சிவராஜ் (Sivaraj) நன்கொடைகளின் வெளிப்படைத்தன்மை மற்றும் நவீன நிர்வாகத்திற்காக BIC மையத்தை இணைந்து நிறுவினார். உலகளாவிய செயல்பாடுகள், கட்டுமான முன்னேற்றம் மற்றும் ஓப்பன் லெட்ஜர் கணக்குகளை நிர்வகிக்கிறார்.',
+                f2Tag1: 'ஓப்பன் லெட்ஜர் & தணிக்கை',
+                f2Tag2: 'உலகளாவிய நிர்வாகம்',
+                donateEyebrow: 'புனித காணிக்கை',
+                donateTitle: 'உங்கள் பங்களிப்பைத் தேர்ந்தெடுக்கவும்',
+                donateSubtitle: 'உங்களுக்கு விருப்பமான நாணயம் மற்றும் கட்டண முறையைத் தேர்ந்தெடுக்கவும். ஒவ்வொரு பங்களிப்பும் BIC ஓப்பன் லெட்ஜரில் வெளிப்படையாகப் பதிவாகும்.',
+                freqOnce: 'ஒருமுறை காணிக்கை',
+                freqMonthly: 'மாதாந்திர ஆதரவு',
+                currencyLabel: 'நாணயம்:',
+                tierHeading: 'புனித ஆதரவு நிலையைத் தேர்ந்தெடுக்கவும்:',
+                tier1: '1 புனித செங்கல்',
+                tier2: 'தியானத் தூண்',
+                tier3: 'தர்ம நூலகப் பகுதி',
+                tier4: 'கல்வெட்டுப் பெயர்',
+                customAmtLabel: 'அல்லது விருப்பத் தொகையை உள்ளிடவும்:',
+                fullNameLabel: 'முழுப் பெயர் *',
+                emailLabel: 'மின்னஞ்சல் முகவரி (ரசீதுக்காக) *',
+                countryLabel: 'நாடு / பகுதி *',
+                taxIdLabel: 'வரி எண் / PAN / SSN (விரும்பினால்)',
+                prayerLabel: 'பிரார்த்தனை / அர்ப்பணிப்பு குறிப்பு (விரும்பினால்)',
+                paymentHeading: 'கட்டண முறையைத் தேர்ந்தெடுக்கவும்:',
+                pmCard: 'கார்ட்',
+                pmApple: 'Apple Pay',
+                pmCrypto: 'கிரிப்டோ',
+                pmQr: 'QR ஸ்கேன்',
+                pmWire: 'SWIFT வயர்',
+                cardPanelTitle: 'கார்ட் கட்டண விவரங்கள்',
+                cardHolderLabel: 'கார்டில் உள்ள பெயர்',
+                cardNumberLabel: 'கார்ட் எண்',
+                cardExpiryLabel: 'காலாவதி (MM/YY)',
+                cardCvvLabel: 'CVV / CVC',
+                cardZipLabel: 'பில்லிங் பின் கோட் / ZIP',
+                cardSecurityNote: 'Visa, Mastercard, RuPay, Amex கார்டுகளுக்கு 3D Secure 2.0 பாதுகாப்பு உள்ளது.',
+                applePayTitle: 'Apple Pay விரைவுச் செலுத்துதல்',
+                applePaySub: 'Safari • iOS • iPadOS • macOS Wallet',
+                applePayTokenBadge: 'பாதுகாப்பான டோக்கன்',
+                appleMerchantLbl: 'நிறுவனம்:',
+                appleCardLbl: 'வாலட் கார்ட்:',
+                appleTotalLbl: 'மொத்த காணிக்கை:',
+                appleBiometricNote: 'உறுதி செய்ய Face ID / Touch ID அல்லது சைடு பட்டனை இருமுறை அழுத்தவும்.',
+                applePayBtn: 'Apple Pay மூலம் செலுத்துக',
+                cryptoTitle: 'நேரடி கிரிப்டோ காணிக்கை (On-Chain)',
+                cryptoZeroFee: '0% கட்டணம்',
+                cryptoScanHint: 'வாலட் செயலியில் ஸ்கேன் செய்க',
+                cryptoNetLbl: 'நெட்வொர்க்:',
+                cryptoEstLbl: 'மதிப்பிடப்பட்ட அளவு:',
+                cryptoAddrLbl: 'வாலட் முகவரி:',
+                cryptoWarn: 'பணம் தவறுவதைத் தவிர்க்க தேர்ந்தெடுத்த நெட்வொர்க்கில் மட்டுமே அனுப்பவும்.',
+                qrAmtPrefix: 'ஸ்கேன் செய்ய வேண்டிய தொகை:',
+                qrSub: 'GPay, PhonePe, Paytm அல்லது வங்கி QR செயலி மூலம் ஸ்கேன் செய்யவும்',
+                submitBtn: 'புனித காணிக்கையை நிறைவு செய்க',
+                secTls: '256-Bit TLS குறியாக்கம்',
+                secPci: 'PCI-DSS தரம் & ஓப்பன் லெட்ஜர் சரிபார்ப்பு',
+                ledgerCardTitle: 'BIC பொது ஓப்பன் லெட்ஜர்',
+                ledgerCardSub: 'நேரடி உலகளாவிய பரிவர்த்தனைகள் • நிறுத்த மவுஸ் வைக்கவும்',
+                ledgerColDonor: 'புரவலர் & நாடு',
+                ledgerColAmt: 'தொகை & கட்டண முறை',
+                ledgerAuditedNote: 'On-Chain & வங்கி தணிக்கை செய்யப்பட்டது',
+                viewAllLedgerBtn: 'முழு லெட்ஜர் காண்க',
+                wireTitle: 'அதிகாரப்பூர்வ வங்கி & SWIFT விவரங்கள்',
+                verifiedBadge: 'சரிபார்க்கப்பட்ட வங்கி விவரம்',
+                wireDesc: 'நிறுவன நன்கொடைகள் அல்லது நேரடி சர்வதேச வங்கிப் பரிமாற்றங்களுக்கு (SWIFT / IFSC) கீழே உள்ள வங்கி விவரங்களைப் பயன்படுத்தவும்:',
+                beneficiaryLbl: 'பயனாளி:',
+                acctLbl: 'கணக்கு எண்:',
+                bankLbl: 'வங்கி:',
+                plaqueTitle: 'நிறுவனப் புரவலர் கல்வெட்டுப் பெயர்',
+                plaqueDesc: '$1,000 USD (அல்லது அதற்கு இணையான தொகை / கிரிப்டோ) அளிப்பவர்களின் பெயர் BIC தர்ம மண்டபக் கல்வெட்டில் பொறிக்கப்படும்.',
+                phasesEyebrow: 'கட்டுமானத் திட்டம்',
+                phasesTitle: 'ஆலயக் கட்டுமானத்தின் 4 நிலைகள்',
+                phasesSub: 'பாரம்பரிய பௌத்த கட்டடக் கலையும் சுற்றுச்சூழல் நட்பு பொறியியலும் இணைந்த வடிவமைப்பு.',
+                p1Badge: 'நிலை 1 • நிறைவு',
+                p1Title: 'புனித நிலம் & அடித்தளம்',
+                p1Desc: '5 ஏக்கர் நிலம் கையகப்படுத்தப்பட்டு, மூத்த சங்கப் பெரியோர்களால் புனிதப்படுத்தப்பட்டு அடித்தளம் முடிக்கப்பட்டது.',
+                p2Badge: 'நிலை 2 • நடைபெறுகிறது (75%)',
+                p2Title: 'முதன்மை தியான மண்டபம்',
+                p2Desc: '1,500 சாதகர்கள் ஒரே நேரத்தில் அமர்ந்து தியானம் செய்யும் தூண்கள் இல்லாத பிரம்மாண்ட மண்டபம்.',
+                p3Badge: 'நிலை 3 • அடுத்த இலக்கு',
+                p3Title: '45 அடி பொன் புத்தர் & ஸ்தூபி',
+                p3Desc: '45 அடி உயர அமைதிப் புத்தர் சிலை, தாமரைக் குளங்கள் மற்றும் பாரம்பரிய ஸ்தூபி அமைப்பு.',
+                p4Badge: 'நிலை 4 • திட்டமிடப்பட்டது',
+                p4Title: 'தர்ம நூலகம் & தான மண்டபம்',
+                p4Desc: 'பாளி, சமஸ்கிருதம் மற்றும் ஆசிய பௌத்த சுவடிகள் நூலகம் மற்றும் இலவச அன்னதான மண்டபம்.',
+                transEyebrow: '100% நிதிப் பொறுப்புணர்வு',
+                transTitle: 'உங்கள் காணிக்கை எவ்வாறு பயன்படுத்தப்படுகிறது?',
+                transDesc: 'BIC சர்வதேச தணிக்கை விதிகளைப் பின்பற்றுகிறது. காலாண்டு தணிக்கை அறிக்கைகள் வெளியிடப்படுகின்றன.',
+                alloc1: 'ஆலயக் கட்டுமானம்',
+                alloc2: 'சமூக நலன் & தானம்',
+                alloc3: 'தணிக்கை & நிர்வாகம்',
+                docsTitle: 'அதிகாரப்பூர்வ ஆவணங்கள்',
+                docLedger: 'நேரடி பொது ஓப்பன் லெட்ஜர் (Real-Time)',
+                footerBrand: 'BIC — போதி சர்வதேச மையம்',
+                footerDesc: 'ஹரிகிருஷ்ணன் & சிவராஜ் நிறுவிய அமைதி, தியானம் மற்றும் உலகளாவிய நல்லிணக்கத்திற்கான சேவை மையம்.',
+                footerHqTitle: 'தலைமையகம்',
+                footerChaptersTitle: 'சர்வதேச கிளைகள்',
+                modalLedgerTitle: 'BIC பொது ஓப்பன் லெட்ஜர் — சரிபார்க்கப்பட்ட பரிவர்த்தனைகள்',
+                modalLedgerSub: 'அனைத்து நாடுகளிலிருந்தும் வரும் காணிக்கைகளின் நேரடி வெளிப்படையான பதிவு',
+                recConfirmed: 'புனித காணிக்கை உறுதிசெய்யப்பட்டது',
+                recBlessing: 'முத்திருமணிகளின் அருளால் உங்களுக்கும் உங்கள் குடும்பத்திற்கும் அமைதியும் நலமும் உண்டாகட்டும்.',
+                recNoLbl: 'ரசீது & லெட்ஜர் எண்:',
+                recNameLbl: 'புரவலர் பெயர்:',
+                recCountryLbl: 'நாடு:',
+                recAmtLbl: 'காணிக்கைத் தொகை:',
+                recMethodLbl: 'கட்டண முறை:',
+                recDateLbl: 'தேதி:',
+                printBtn: 'சான்றிதழ் அச்சிடுக',
+                doneBtn: 'முடிந்தது'
+            },
+            ja: {
+                regLabel: '登録番号:',
+                taxBadge: '501(c)(3)相当・80G・FCRA認定',
+                topOpenLedger: '公開オープン台帳',
+                topTransparency: '財務の透明性',
+                siteName: 'BIC — 菩提国際センター',
+                siteTagline: 'Bodhi International Center • 平和と法の聖域',
+                navAbout: '概要・創設者',
+                navContribute: '寄付する',
+                navPhases: '建設フェーズ',
+                navAudit: '監査・報告書',
+                navContact: 'お問い合わせ',
+                ctaDonate: '今すぐ寄付',
+                heroBadge: '公式グローバル募金キャンペーン • 2026',
+                heroTitle: '世界平和とマインドフルネスのための聖域を建立',
+                heroDesc: '菩提国際センター（BIC）は、慈悲と智慧の教えを次世代へ伝える国際仏教寺院と瞑想ホールを建立しています。',
+                heroPrimaryBtn: '浄財を捧げる',
+                heroSecondaryBtn: '概要と創設者',
+                heroFeat1: '即時領収書発行',
+                heroFeat2: 'カード・Apple Pay・暗号資産対応',
+                heroFeat3: '100% 公開オープン台帳',
+                liveStatus: '現在の募金状況',
+                countriesCount: '54カ国から参加',
+                goalLabel: '目標 $600,000 USD に対する達成額',
+                fundedLabel: '達成率',
+                statPatrons: '世界の支援者',
+                statBuild: '建設へ直接充当',
+                statTax: '税制優遇認定',
+                recentVerified: '2分前 • BICオープン台帳に記録済み',
+                aboutEyebrow: '私たちについて',
+                aboutTitle: '慈悲に根ざし、永遠の平和へ',
+                aboutDesc: '菩提国際センター（BIC）は、瞑想実践、仏教研究、透明性の高い慈善活動を通じて世界平和に貢献する非営利センターです。',
+                foundersTag: '創設リーダーシップ',
+                foundersHeading: '創設者',
+                coFoundersBadge: '共同創設者 • BICサンクチュアリ',
+                f1RoleBadge: '創設者 • 聖域ビジョン・法話実践',
+                f1Bio: 'HariKrishnanは静寂と伝統文化の継承、調和ある聖域づくりへの深い志をもってBICを共同設立しました。瞑想リトリートや精神的ビジョンの推進を担っています。',
+                f1Tag1: '瞑想と法話',
+                f1Tag2: '聖域建築デザイン',
+                f2RoleBadge: '創設者 • ガバナンス・オープン台帳',
+                f2Bio: 'Sivarajは慈善活動と透明性の高い財務管理を融合させるためにBICを共同設立しました。国際運営、建設進捗、リアルタイムのオープン台帳による説明責任を統括しています。',
+                f2Tag1: 'オープン台帳と監査',
+                f2Tag2: 'グローバル運営',
+                donateEyebrow: '尊いご寄付',
+                donateTitle: '寄付額と方法を選択',
+                donateSubtitle: '通貨、コース、お支払い方法をお選びください。すべての寄付はBIC公開オープン台帳に透明に記録されます。',
+                freqOnce: '単発寄付',
+                freqMonthly: '毎月の継続寄付',
+                currencyLabel: '通貨:',
+                tierHeading: '奉納コースを選択:',
+                tier1: '聖なるレンガ 1個',
+                tier2: '瞑想ホールの柱',
+                tier3: '法蔵ライブラリ翼',
+                tier4: '銘板芳名録',
+                customAmtLabel: 'または任意の金額を入力:',
+                fullNameLabel: '氏名 *',
+                emailLabel: 'メールアドレス（領収書送付先） *',
+                countryLabel: '国・地域 *',
+                taxIdLabel: '納税番号（任意）',
+                prayerLabel: '回向・祈願メッセージ（任意）',
+                paymentHeading: 'お支払い方法を選択:',
+                pmCard: 'カード',
+                pmApple: 'Apple Pay',
+                pmCrypto: '暗号資産',
+                pmQr: 'QRスキャン',
+                pmWire: 'SWIFT送金',
+                cardPanelTitle: 'カード決済詳細',
+                cardHolderLabel: 'カード名義人',
+                cardNumberLabel: 'カード番号',
+                cardExpiryLabel: '有効期限 (MM/YY)',
+                cardCvvLabel: 'セキュリティコード',
+                cardZipLabel: '郵便番号',
+                cardSecurityNote: 'Visa、Mastercard、Amexなどの国際カード3Dセキュア2.0に対応しています。',
+                applePayTitle: 'Apple Pay クイック決済',
+                applePaySub: 'Safari • iOS • iPadOS • macOS Wallet',
+                applePayTokenBadge: '端末トークン保護',
+                appleMerchantLbl: '加盟店:',
+                appleCardLbl: 'ウォレット:',
+                appleTotalLbl: '寄付合計:',
+                appleBiometricNote: 'Face ID / Touch ID またはサイドボタンのダブルクリックで承認します。',
+                applePayBtn: 'Apple Pay で支払う',
+                cryptoTitle: 'オンチェーン暗号資産寄付',
+                cryptoZeroFee: '手数料 0%',
+                cryptoScanHint: 'ウォレットでスキャン',
+                cryptoNetLbl: 'ネットワーク:',
+                cryptoEstLbl: '換算目安:',
+                cryptoAddrLbl: '送金先アドレス:',
+                cryptoWarn: '資金の喪失を防ぐため、選択したネットワークと同一の資産のみをご送金ください。',
+                qrAmtPrefix: 'お支払い金額:',
+                qrSub: '対応するQR決済アプリで読み取ってください',
+                submitBtn: '寄付を完了する',
+                secTls: '256-Bit TLS 暗号化',
+                secPci: 'PCI-DSS準拠・オープン台帳検証済み',
+                ledgerCardTitle: 'BIC 公開オープン台帳',
+                ledgerCardSub: 'リアルタイム寄付履歴 • ホバーで一時停止',
+                ledgerColDonor: '支援者・国',
+                ledgerColAmt: '金額・決済方法',
+                ledgerAuditedNote: 'オンチェーン＆銀行同期監査済み',
+                viewAllLedgerBtn: '全台帳を見る',
+                wireTitle: '公式銀行・SWIFT送金情報',
+                verifiedBadge: '確認済み受取口座',
+                wireDesc: '法人助成や国際電信送金（SWIFT / IFSC）には以下の受取口座をご利用ください:',
+                beneficiaryLbl: '受取人:',
+                acctLbl: '口座番号:',
+                bankLbl: '銀行名:',
+                plaqueTitle: '創立支援者 大理石銘板',
+                plaqueDesc: '$1,000 USD（または相当額）以上のご寄付で、BIC瞑想ホールの大理石銘板にお名前またはご祈願を刻みます。',
+                phasesEyebrow: '建築ロードマップ',
+                phasesTitle: '寺院建設の4つのフェーズ',
+                phasesSub: '伝統的な仏教建築の調和と持続可能な環境設計を融合。',
+                p1Badge: '第1期 • 完了',
+                p1Title: '聖地取得と基礎工事',
+                p1Desc: '5エーカーの聖地を取得し、長老僧侶による浄化と耐震基礎工事を完了。',
+                p2Badge: '第2期 • 進行中 (75%)',
+                p2Title: '大瞑想ホール',
+                p2Desc: '1,500名が同時に瞑想できる無柱空間と自然な音響設計を実現。',
+                p3Badge: '第3期 • 次のマイルストーン',
+                p3Title: '45フィート黄金仏像と仏塔',
+                p3Desc: '金箔ブロンズの平和仏像、仏塔、蓮池を備えた聖域エリアを整備。',
+                p4Badge: '第4期 • 計画中',
+                p4Title: '法蔵図書館と施食ホール',
+                p4Desc: 'パーリ語・サンスクリット文献のアーカイブと無料のコミュニティ食堂を併設。',
+                transEyebrow: '100% 財務説明責任',
+                transTitle: 'ご寄付の使途について',
+                transDesc: 'BICは厳格な非営利ガバナンスのもと、第三者監査と建設進捗を四半期ごとに公開しています。',
+                alloc1: '寺院建設費',
+                alloc2: '地域支援・施し',
+                alloc3: '監査・管理運営',
+                docsTitle: '公式ガバナンス文書',
+                docLedger: '公開オープン台帳（リアルタイム）',
+                footerBrand: 'BIC — 菩提国際センター',
+                footerDesc: 'HariKrishnanとSivarajにより設立された、慈悲と平和を目指す非営利センター。',
+                footerHqTitle: '本部所在地',
+                footerChaptersTitle: '海外支部',
+                modalLedgerTitle: 'BIC 公開オープン台帳 — 検証済み取引履歴',
+                modalLedgerSub: '法定通貨および暗号資産ゲートウェイのリアルタイム透明監査ログ',
+                recConfirmed: 'ご寄付が確定しました',
+                recBlessing: '三宝のご加護により、ご家族に平和と健康と智慧がありますように。',
+                recNoLbl: '領収書・台帳番号:',
+                recNameLbl: 'お名前:',
+                recCountryLbl: '国・地域:',
+                recAmtLbl: '寄付金額:',
+                recMethodLbl: '決済方法:',
+                recDateLbl: '発行日:',
+                printBtn: '証明書を印刷',
+                doneBtn: '完了'
+            },
+            th: {
+                regLabel: 'เลขทะเบียน:',
+                taxBadge: 'ได้รับการรับรอง 501(c)(3), 80G และ FCRA',
+                topOpenLedger: 'บัญชีเปิดสาธารณะสด',
+                topTransparency: 'ความโปร่งใสด้านการเงิน',
+                siteName: 'BIC — ศูนย์นานาชาติโพธิ์',
+                siteTagline: 'Bodhi International Center • ศูนย์สันติภาพและธรรมสถาน',
+                navAbout: 'เกี่ยวกับเรา',
+                navContribute: 'ร่วมทำบุญ',
+                navPhases: 'ระยะการก่อสร้าง',
+                navAudit: 'รายงานการตรวจสอบ',
+                navContact: 'ติดต่อเรา',
+                ctaDonate: 'ร่วมทำบุญเลย',
+                heroBadge: 'แคมเปญระดมทุนนานาชาติอย่างเป็นทางการ • 2026',
+                heroTitle: 'สร้างพุทธสถานอันศักดิ์สิทธิ์เพื่อสันติภาพโลกและสติ',
+                heroDesc: 'ศูนย์นานาชาติโพธิ์ (BIC) กำลังก่อสร้างวิหารและศาลาปฏิบัติธรรมนานาชาติ เพื่อสืบสานพระธรรมแห่งเมตตา ปัญญา และความสงบสู่คนรุ่นต่อไป',
+                heroPrimaryBtn: 'ร่วมถวายจตุปัจจัย',
+                heroSecondaryBtn: 'เกี่ยวกับเราและผู้ก่อตั้ง',
+                heroFeat1: 'ออกใบอนุโมทนาบัตรทันที',
+                heroFeat2: 'รองรับบัตร Apple Pay และคริปโต',
+                heroFeat3: 'บัญชีเปิดสาธารณะ 100%',
+                liveStatus: 'ยอดระดมทุนล่าสุด',
+                countriesCount: '54 ประเทศ',
+                goalLabel: 'ยอดสะสมจากเป้าหมาย $600,000 USD',
+                fundedLabel: 'สำเร็จแล้ว',
+                statPatrons: 'ผู้มีจิตศรัทธา',
+                statBuild: 'ก่อสร้างโดยตรง',
+                statTax: 'ลดหย่อนภาษีได้',
+                recentVerified: '2 นาทีที่แล้ว • บันทึกในบัญชีเปิด BIC แล้ว',
+                aboutEyebrow: 'เกี่ยวกับเรา',
+                aboutTitle: 'ตั้งมั่นในเมตตาธรรม เพื่อสันติภาพที่ยั่งยืน',
+                aboutDesc: 'ศูนย์นานาชาติโพธิ์ (BIC) เป็นศูนย์ปฏิบัติธรรม การศึกษา และสาธารณกุศลที่ไม่แสวงหากำไร มุ่งเน้นความสงบทางใจและความโปร่งใสในการสร้างบุญ',
+                foundersTag: 'คณะผู้ก่อตั้ง',
+                foundersHeading: 'ผู้ก่อตั้ง',
+                coFoundersBadge: 'ผู้ร่วมก่อตั้ง • ศูนย์ BIC',
+                f1RoleBadge: 'ผู้ก่อตั้ง • วิสัยทัศน์พุทธสถานและธรรมะ',
+                f1Bio: 'HariKrishnan ร่วมก่อตั้งศูนย์นานาชาติโพธิ์ด้วยปณิธานด้านสันติภาพภายใน การอนุรักษ์ศิลปวัฒนธรรม และสถาปัตยกรรมอันสงบเย็น เป็นผู้นำด้านการเจริญสติและกิจกรรมธรรมะนานาชาติ',
+                f1Tag1: 'ภาวนาและธรรมะ',
+                f1Tag2: 'สถาปัตยกรรมศักดิ์สิทธิ์',
+                f2RoleBadge: 'ผู้ก่อตั้ง • การกำกับดูแลและบัญชีเปิด',
+                f2Bio: 'Sivaraj ร่วมก่อตั้งศูนย์นานาชาติโพธิ์เพื่อผสานการกุศลเข้ากับความโปร่งใสทางการเงิน ดูแลการดำเนินงานระดับนานาชาติ ความคืบหน้าการก่อสร้าง และระบบบัญชีเปิดสาธารณะ',
+                f2Tag1: 'บัญชีเปิดและการตรวจสอบ',
+                f2Tag2: 'การดำเนินงานสากล',
+                donateEyebrow: 'การร่วมทำบุญอันเป็นกุศล',
+                donateTitle: 'เลือกยอดและช่องทางทำบุญ',
+                donateSubtitle: 'เลือกสกุลเงินและช่องทางชำระเงิน รายการทำบุญที่ยืนยันแล้วจะแสดงอย่างโปร่งใสในบัญชีเปิดสาธารณะของ BIC',
+                freqOnce: 'ทำบุญครั้งเดียว',
+                freqMonthly: 'ร่วมสมทบรายเดือน',
+                currencyLabel: 'สกุลเงิน:',
+                tierHeading: 'เลือกระดับการร่วมสร้าง:',
+                tier1: 'อิฐศักดิ์สิทธิ์ 1 ก้อน',
+                tier2: 'เสาศาลาปฏิบัติธรรม',
+                tier3: 'ห้องสมุดธรรมะ',
+                tier4: 'จารึกแผ่นหินเกียรติคุณ',
+                customAmtLabel: 'หรือระบุจำนวนเงินด้วยตนเอง:',
+                fullNameLabel: 'ชื่อ-นามสกุล *',
+                emailLabel: 'อีเมล (สำหรับรับใบอนุโมทนาบัตร) *',
+                countryLabel: 'ประเทศ / ภูมิภาค *',
+                taxIdLabel: 'เลขประจำตัวผู้เสียภาษี (ไม่บังคับ)',
+                prayerLabel: 'อุทิศส่วนกุศล / คำอธิษฐาน (ไม่บังคับ)',
+                paymentHeading: 'เลือกช่องทางชำระเงิน:',
+                pmCard: 'บัตรเครดิต/เดบิต',
+                pmApple: 'Apple Pay',
+                pmCrypto: 'คริปโต',
+                pmQr: 'สแกน QR',
+                pmWire: 'โอน SWIFT',
+                cardPanelTitle: 'รายละเอียดการชำระด้วยบัตร',
+                cardHolderLabel: 'ชื่อบนบัตร',
+                cardNumberLabel: 'หมายเลขบัตร',
+                cardExpiryLabel: 'วันหมดอายุ (MM/YY)',
+                cardCvvLabel: 'รหัส CVV / CVC',
+                cardZipLabel: 'รหัสไปรษณีย์',
+                cardSecurityNote: 'รองรับระบบยืนยันตัวตน 3D Secure 2.0 สำหรับบัตรสากล',
+                applePayTitle: 'ชำระด่วนผ่าน Apple Pay',
+                applePaySub: 'Safari • iOS • iPadOS • macOS Wallet',
+                applePayTokenBadge: 'ปลอดภัยด้วย Token',
+                appleMerchantLbl: 'ผู้รับเงิน:',
+                appleCardLbl: 'บัตรใน Wallet:',
+                appleTotalLbl: 'ยอดรวม:',
+                appleBiometricNote: 'กดปุ่มด้านข้างสองครั้ง หรือใช้ Face ID / Touch ID เพื่อยืนยัน',
+                applePayBtn: 'ชำระด้วย Apple Pay',
+                cryptoTitle: 'ร่วมบุญด้วยคริปโตเคอร์เรนซี (On-Chain)',
+                cryptoZeroFee: 'ค่าธรรมเนียม 0%',
+                cryptoScanHint: 'สแกนด้วยแอปกระเป๋าเงิน',
+                cryptoNetLbl: 'เครือข่าย:',
+                cryptoEstLbl: 'มูลค่าโดยประมาณ:',
+                cryptoAddrLbl: 'ที่อยู่กระเป๋าเงิน:',
+                cryptoWarn: 'กรุณาส่งเฉพาะเหรียญและเครือข่ายที่ตรงกันเพื่อป้องกันการสูญหายของสินทรัพย์',
+                qrAmtPrefix: 'ยอดที่ต้องสแกน:',
+                qrSub: 'สแกนด้วยแอปธนาคารหรือแอปสแกน QR ที่รองรับ',
+                submitBtn: 'ยืนยันการร่วมทำบุญ',
+                secTls: 'เข้ารหัส 256-Bit TLS',
+                secPci: 'มาตรฐาน PCI-DSS และยืนยันบนบัญชีเปิดสาธารณะ',
+                ledgerCardTitle: 'บัญชีเปิดสาธารณะ BIC',
+                ledgerCardSub: 'รายการทำบุญทั่วโลกแบบสด • ชี้เมาส์เพื่อหยุดชั่วคราว',
+                ledgerColDonor: 'ผู้ร่วมบุญและประเทศ',
+                ledgerColAmt: 'ยอดเงินและช่องทาง',
+                ledgerAuditedNote: 'ตรวจสอบซิงค์บล็อกเชนและธนาคารแล้ว',
+                viewAllLedgerBtn: 'ดูบัญชีทั้งหมด',
+                wireTitle: 'ข้อมูลบัญชีโอนเงินและ SWIFT อย่างเป็นทางการ',
+                verifiedBadge: 'บัญชีผู้รับเงินที่ยืนยันแล้ว',
+                wireDesc: 'สำหรับการโอนเงินจากต่างประเทศหรือเงินบริจาคองค์กร (SWIFT / IFSC) ใช้ข้อมูลบัญชีผู้รับเงินด้านล่าง:',
+                beneficiaryLbl: 'ชื่อบัญชี:',
+                acctLbl: 'เลขที่บัญชี:',
+                bankLbl: 'ธนาคาร:',
+                plaqueTitle: 'จารึกชื่อผู้มีจิตศรัทธาบนแผ่นหินอ่อน',
+                plaqueDesc: 'ผู้ร่วมทำบุญตั้งแต่ $1,000 USD ขึ้นไป จะได้รับการจารึกชื่อหรือคำอุทิศบนผนังหินอ่อนของ BIC',
+                phasesEyebrow: 'แผนการก่อสร้าง',
+                phasesTitle: '4 ระยะของการก่อสร้างพุทธสถาน',
+                phasesSub: 'ผสานสถาปัตยกรรมพุทธศิลป์อันสง่างามเข้ากับวิศวกรรมที่เป็นมิตรต่อสิ่งแวดล้อม',
+                p1Badge: 'ระยะที่ 1 • เสร็จสมบูรณ์',
+                p1Title: 'ที่ดินศักดิ์สิทธิ์และฐานราก',
+                p1Desc: 'จัดหาพื้นที่ 5 เอเคอร์ พิธีเจริญพระพุทธมนต์ และวางฐานรากต้านแผ่นดินไหวเรียบร้อยแล้ว',
+                p2Badge: 'ระยะที่ 2 • กำลังดำเนินการ (75%)',
+                p2Title: 'ศาลาปฏิบัติธรรมหลัก',
+                p2Desc: 'ศาลาโล่งรองรับผู้ปฏิบัติธรรมได้ 1,500 คน พร้อมการถ่ายเทอากาศและเสียงที่เป็นธรรมชาติ',
+                p3Badge: 'ระยะที่ 3 • ระยะถัดไป',
+                p3Title: 'พระพุทธรูปทองคำ 45 ฟุต และเจดีย์',
+                p3Desc: 'ประดิษฐานพระพุทธรูปสำริดปิดทองสูง 45 ฟุต เจดีย์พระบรมสารีริกธาตุ และสระบัว',
+                p4Badge: 'ระยะที่ 4 • ตามแผน',
+                p4Title: 'หอสมุดธรรมะและโรงทาน',
+                p4Desc: 'คลังคัมภีร์บาลี สันสกฤต และพุทธศาสนา พร้อมโรงทานบริการชุมชนฟรีทุกวัน',
+                transEyebrow: 'ความรับผิดชอบทางการเงิน 100%',
+                transTitle: 'การจัดสรรจตุปัจจัยอย่างโปร่งใส',
+                transDesc: 'BIC ปฏิบัติตามมาตรฐานองค์กรไม่แสวงหากำไรสากล และเผยแพร่รายงานการตรวจสอบบัญชีรายไตรมาส',
+                alloc1: 'การก่อสร้างพุทธสถาน',
+                alloc2: 'สาธารณสงเคราะห์และโรงทาน',
+                alloc3: 'การตรวจสอบและบริหาร',
+                docsTitle: 'เอกสารกำกับดูแลอย่างเป็นทางการ',
+                docLedger: 'บัญชีเปิดสาธารณะสด (Real-Time)',
+                footerBrand: 'BIC — ศูนย์นานาชาติโพธิ์',
+                footerDesc: 'ก่อตั้งโดย HariKrishnan และ Sivaraj — ศูนย์สาธารณกุศลเพื่อเมตตาธรรม สติ และสันติภาพสากล',
+                footerHqTitle: 'สำนักงานใหญ่',
+                footerChaptersTitle: 'สาขานานาชาติ',
+                modalLedgerTitle: 'บัญชีเปิดสาธารณะ BIC — รายการที่ยืนยันแล้วทั่วโลก',
+                modalLedgerSub: 'บันทึกการตรวจสอบที่โปร่งใสแบบเรียลไทม์ของทุกช่องทาง',
+                recConfirmed: 'ยืนยันการร่วมทำบุญเรียบร้อยแล้ว',
+                recBlessing: 'ขออำนาจคุณพระศรีรัตนตรัยอำนวยพรให้ท่านและครอบครัวประสบสันติสุข สุขภาพแข็งแรง และปัญญา',
+                recNoLbl: 'เลขที่ใบอนุโมทนาและบัญชี:',
+                recNameLbl: 'ชื่อผู้ร่วมบุญ:',
+                recCountryLbl: 'ประเทศ:',
+                recAmtLbl: 'ยอดทำบุญ:',
+                recMethodLbl: 'ช่องทางชำระ:',
+                recDateLbl: 'วันที่ออกใบเสร็จ:',
+                printBtn: 'พิมพ์ใบอนุโมทนาบัตร',
+                doneBtn: 'เสร็จสิ้น'
+            }
+        };
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            const dict = translations[lang] || translations.en;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (el.querySelector('i')) {
+                        const iconHtml = el.querySelector('i').outerHTML;
+                        el.innerHTML = `${iconHtml} ${dict[key]}`;
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+
+            updateCryptoEstimate();
+            updateApplePaySummary();
+            showToast(`Language switched: ${document.getElementById('languageSelect').options[document.getElementById('languageSelect').selectedIndex].text}`);
+        }
+
+        function formatCurrencyAmount(amount, currencyCode) {
+            if (currencyCode === 'JPY' || currencyCode === 'INR') {
+                return Math.round(amount).toLocaleString('en-US');
+            }
+            return Math.round(amount).toLocaleString('en-US');
+        }
+
+        function selectAmount(usdAmount, btnElement) {
+            selectedBaseUSD = usdAmount;
+            document.querySelectorAll('.tier-btn').forEach(btn => {
+                btn.classList.remove('border-saffron-500', 'bg-saffron-50/80');
+                btn.classList.add('border-stone-200');
+                const amtSpan = btn.querySelector('.amount-label');
+                const subSpan = btn.querySelectorAll('span')[1];
+                if (amtSpan) {
+                    amtSpan.classList.remove('text-maroon-900');
+                    amtSpan.classList.add('text-stone-900');
+                }
+                if (subSpan) {
+                    subSpan.classList.remove('text-saffron-800', 'font-semibold');
+                    subSpan.classList.add('text-stone-500');
+                }
+            });
+
+            btnElement.classList.remove('border-stone-200');
+            btnElement.classList.add('border-saffron-500', 'bg-saffron-50/80');
+            const activeAmt = btnElement.querySelector('.amount-label');
+            const activeSub = btnElement.querySelectorAll('span')[1];
+            if (activeAmt) {
+                activeAmt.classList.remove('text-stone-900');
+                activeAmt.classList.add('text-maroon-900');
+            }
+            if (activeSub) {
+                activeSub.classList.remove('text-stone-500');
+                activeSub.classList.add('text-saffron-800', 'font-semibold');
+            }
+
+            document.getElementById('customAmount').value = Math.round(usdAmount * currentRate);
+            onAmountChange();
+        }
+
+        function updateCurrency() {
+            const select = document.getElementById('currencySelect');
+            const selectedOption = select.options[select.selectedIndex];
+            currentCurrency = select.value;
+            currentSymbol = selectedOption.getAttribute('data-symbol');
+            currentRate = parseFloat(selectedOption.getAttribute('data-rate'));
+
+            document.getElementById('currencySymbolInput').textContent = currentSymbol;
+
+            document.querySelectorAll('.amount-label').forEach(label => {
+                const baseUsd = parseFloat(label.getAttribute('data-usd'));
+                const val = formatCurrencyAmount(baseUsd * currentRate, currentCurrency);
+                label.textContent = `${currentSymbol}${val}`;
+            });
+
+            document.getElementById('customAmount').value = Math.round(selectedBaseUSD * currentRate);
+            onAmountChange();
+        }
+
+        function togglePaymentPanels() {
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const cardPanel = document.getElementById('cardPaymentPanel');
+            const applePanel = document.getElementById('applePayPanel');
+            const cryptoPanel = document.getElementById('cryptoPaymentPanel');
+            const qrPanel = document.getElementById('qrPaymentContainer');
+
+            cardPanel.classList.add('hidden');
+            applePanel.classList.add('hidden');
+            cryptoPanel.classList.add('hidden');
+            qrPanel.classList.add('hidden');
+
+            if (selectedMethod.includes('Card')) {
+                cardPanel.classList.remove('hidden');
+            } else if (selectedMethod.includes('Apple Pay')) {
+                applePanel.classList.remove('hidden');
+                updateApplePaySummary();
+            } else if (selectedMethod.includes('Cryptocurrency')) {
+                cryptoPanel.classList.remove('hidden');
+                updateCryptoEstimate();
+            } else if (selectedMethod.includes('QR')) {
+                qrPanel.classList.remove('hidden');
+                updateQRCode();
+            }
+        }
+
+        function formatCardNumber(input) {
+            let digits = input.value.replace(/\D/g, '').substring(0, 16);
+            let formatted = digits.match(/.{1,4}/g);
+            input.value = formatted ? formatted.join(' ') : '';
+        }
+
+        function formatExpiry(input) {
+            let digits = input.value.replace(/\D/g, '').substring(0, 4);
+            if (digits.length >= 3) {
+                input.value = digits.substring(0, 2) + '/' + digits.substring(2);
+            } else {
+                input.value = digits;
+            }
+        }
+
+        function updateApplePaySummary() {
+            const amount = document.getElementById('customAmount').value || 100;
+            const el = document.getElementById('applePayAmountDisplay');
+            if (el) {
+                el.textContent = `${currentSymbol}${Number(amount).toLocaleString('en-US')} (${currentCurrency})`;
+            }
+        }
+
+        function triggerApplePayExpress() {
+            const amount = document.getElementById('customAmount').value || 100;
+            showToast(`Apple Pay authorized for ${currentSymbol}${Number(amount).toLocaleString('en-US')} (${currentCurrency}) — Fill Name & Email and click Complete.`);
+        }
+
+        function selectCrypto(code, symbol, network, address, btnElement) {
+            selectedCrypto = {
+                code,
+                symbol,
+                network,
+                address,
+                usdPrice: cryptoPricesUSD[code] || 1
+            };
+
+            document.querySelectorAll('.crypto-btn').forEach(btn => {
+                btn.classList.remove('border-2', 'border-saffron-500', 'bg-saffron-500/15');
+                btn.classList.add('border', 'border-stone-700');
+                const sub = btn.querySelectorAll('span')[1];
+                if (sub) {
+                    sub.classList.remove('text-saffron-300');
+                    sub.classList.add('text-stone-400');
+                }
+            });
+
+            btnElement.classList.remove('border', 'border-stone-700');
+            btnElement.classList.add('border-2', 'border-saffron-500', 'bg-saffron-500/15');
+            const activeSub = btnElement.querySelectorAll('span')[1];
+            if (activeSub) {
+                activeSub.classList.remove('text-stone-400');
+                activeSub.classList.add('text-saffron-300');
+            }
+
+            document.getElementById('cryptoNetworkName').textContent = network;
+            document.getElementById('cryptoWalletAddress').textContent = address;
+            document.getElementById('cryptoQrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(address)}`;
+            updateCryptoEstimate();
+        }
+
+        function updateCryptoEstimate() {
+            const rawAmount = parseFloat(document.getElementById('customAmount').value) || 100;
+            const usdVal = rawAmount / currentRate;
+            const coinAmount = usdVal / selectedCrypto.usdPrice;
+            const formattedCoin = selectedCrypto.symbol === 'USDT'
+                ? coinAmount.toFixed(2)
+                : coinAmount.toFixed(5);
+            const estEl = document.getElementById('cryptoApproxValue');
+            if (estEl) {
+                estEl.textContent = `~${formattedCoin} ${selectedCrypto.symbol}`;
+            }
+        }
+
+        function copyCryptoAddress() {
+            copyText(selectedCrypto.address);
+        }
+
+        function updateQRCode() {
+            const amount = document.getElementById('customAmount').value || 100;
+            const qrDisplay = document.getElementById('qrAmountDisplay');
+            const qrImg = document.getElementById('dynamicQrImage');
+            
+            if (qrDisplay) {
+                qrDisplay.textContent = `${currentSymbol}${Number(amount).toLocaleString('en-US')} (${currentCurrency})`;
+            }
+            if (qrImg && qrImg.getAttribute('src') !== BIC_QR_IMAGE_SRC) {
+                qrImg.src = BIC_QR_IMAGE_SRC;
+            }
+        }
+
+        function onAmountChange() {
+            updateQRCode();
+            updateApplePaySummary();
+            updateCryptoEstimate();
+        }
+
+        document.getElementById('customAmount').addEventListener('input', onAmountChange);
+
+        function setFrequency(type) {
+            const btnOnce = document.getElementById('freq-once');
+            const btnMonthly = document.getElementById('freq-monthly');
+            if (type === 'once') {
+                btnOnce.className = 'flex-1 sm:flex-none px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-maroon-900 shadow-sm transition-all';
+                btnMonthly.className = 'flex-1 sm:flex-none px-5 py-2 rounded-lg text-xs sm:text-sm font-medium text-stone-600 hover:text-stone-900 transition-all';
+            } else {
+                btnMonthly.className = 'flex-1 sm:flex-none px-5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-maroon-900 shadow-sm transition-all';
+                btnOnce.className = 'flex-1 sm:flex-none px-5 py-2 rounded-lg text-xs sm:text-sm font-medium text-stone-600 hover:text-stone-900 transition-all';
+            }
+        }
+
+        function processDonation(event) {
+            event.preventDefault();
+            const name = document.getElementById('donorName').value.trim();
+            const country = document.getElementById('donorCountry').value.trim();
+            const amount = parseFloat(document.getElementById('customAmount').value);
+            let method = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            if (!amount || amount <= 0) {
+                showToast('Please enter a valid contribution amount.');
+                return;
+            }
+
+            if (method.includes('Cryptocurrency')) {
+                method = `${selectedCrypto.symbol} (${selectedCrypto.network})`;
+            }
+
+            const donatedInUSD = amount / currentRate;
+            totalRaisedUSD += donatedInUSD;
+            totalDonors += 1;
+
+            const txNumber = 'BIC-TX-' + Math.floor(9483 + Math.random() * 500);
+            const formattedNative = `${currentSymbol}${amount.toLocaleString('en-US')}`;
+
+            openLedgerEntries.unshift({
+                tx: txNumber,
+                name: name,
+                country: country,
+                flag: getCountryFlag(country),
+                amountText: formattedNative,
+                usdText: '$' + Math.round(donatedInUSD).toLocaleString('en-US'),
+                method: method,
+                time: 'Just now'
+            });
+            renderOpenLedgerTicker();
+
+            const newPercent = Math.min(((totalRaisedUSD / goalUSD) * 100), 100).toFixed(1);
+            document.getElementById('raisedDisplay').textContent = '$' + Math.round(totalRaisedUSD).toLocaleString('en-US');
+            document.getElementById('percentDisplay').textContent = newPercent + '%';
+            document.getElementById('progressBar').style.width = newPercent + '%';
+            document.getElementById('donorCount').textContent = totalDonors.toLocaleString('en-US');
+            document.getElementById('recentDonorText').textContent = `${name} (${country}) donated ${formattedNative} via ${method}`;
+
+            document.getElementById('recId').textContent = txNumber;
+            document.getElementById('recName').textContent = name;
+            document.getElementById('recCountry').textContent = country;
+            document.getElementById('recAmount').textContent = `${formattedNative} (${currentCurrency})`;
+            document.getElementById('recMethod').textContent = method;
+            document.getElementById('recDate').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            document.getElementById('receiptModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('receiptModal').classList.add('hidden');
+            document.getElementById('donationForm').reset();
+            updateCurrency();
+            togglePaymentPanels();
+        }
+
+        function copyText(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+            } else {
+                fallbackCopy(text);
+            }
+            showToast(`Copied: ${text}`);
+        }
+
+        function fallbackCopy(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastBox');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('hidden');
+            clearTimeout(window.toastTimer);
+            window.toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        renderOpenLedgerTicker();
+    </script>
+</body>
+</html>
